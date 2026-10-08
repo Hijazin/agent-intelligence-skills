@@ -62,7 +62,7 @@
           "max_jobs": {
             "title": "Maximum jobs (advanced)",
             "type": "integer",
-            "description": "Default 30; output cap 1\u2013100. Partial positives cost one report; complete dated negatives also cost one report. Unknown/failed checks are free. Raising this cap does not increase the 40-request budget.",
+            "description": "Default 30; output cap 1–100. Partial positives cost one report; complete dated negatives also cost one report. Unknown/failed checks are free. Raising this cap does not increase the 40-request budget.",
             "default": 30,
             "minimum": 1,
             "maximum": 100,
@@ -74,7 +74,38 @@
         ]
       },
       "mcp_arguments_reference": "references/mcp-calls.json",
-      "output_example_reference": "references/output-examples.json"
+      "output_example_reference": "references/output-examples.json",
+      "verification_scope": "A current listing in the company-linked public careers or ATS source, with explicit publication metadata. Republishing is labeled.",
+      "coverage_limits": "Unsupported ATS, undated listings, blocked sources and incomplete coverage remain unknown. A verified negative covers only the checked sources.",
+      "request_bounds": "40 requests, 24 MB total, 5 MB per page, 90-second network budget.",
+      "selection": {
+        "choose_when": "Recent hiring evidence for account research and recruiting workflows.",
+        "candidate_search_phrases": [
+          "company job openings",
+          "recent hiring signals",
+          "dated live jobs"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Discovering companies from geography or industry criteria",
+          "Proving hiring velocity from a single snapshot",
+          "Identifying decision-makers or proving purchase intent"
+        ],
+        "minimal_input_example": {
+          "company_website": "https://linear.app",
+          "lookback_days": 30,
+          "max_jobs": 5
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/company-recent-job-openings"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.03,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     },
     {
       "intent": "Which public contact routes are advertised on this supplied business website?",
@@ -93,7 +124,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "Website Contact Finder \u2014 Email, Phone & Booking",
+        "title": "Website Contact Finder — Email, Phone & Booking",
         "type": "object",
         "schemaVersion": 1,
         "properties": {
@@ -111,7 +142,36 @@
         ]
       },
       "mcp_arguments_reference": "references/mcp-calls.json",
-      "output_example_reference": "references/output-examples.json"
+      "output_example_reference": "references/output-examples.json",
+      "verification_scope": "A contact route observed on checked official website pages, with a source URL and timestamp.",
+      "coverage_limits": "This checks publication, not mailbox deliverability, decision-maker identity or completed booking. No observed route is not proof none exists.",
+      "request_bounds": "4 requests, 6 MB total, 3 MB per page, 22-second network budget.",
+      "selection": {
+        "choose_when": "Enrich an account with checked business contact routes.",
+        "candidate_search_phrases": [
+          "website contact finder",
+          "public business email and phone",
+          "company booking links"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Verifying mailbox deliverability",
+          "Finding private contact details or identifying decision-makers",
+          "Sending messages or completing bookings"
+        ],
+        "minimal_input_example": {
+          "company_website": "https://cliniquealpa.co.uk/"
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/verified-contact-booking-signals"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.01,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     },
     {
       "intent": "What plans and prices does this vendor display on its official pricing pages?",
@@ -130,7 +190,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "SaaS Pricing Plans & Prices \u2014 Verified Reports",
+        "title": "SaaS Pricing Plans & Prices — Verified Reports",
         "description": "Supply one public company website. An explicit pricing URL is optional.",
         "type": "object",
         "schemaVersion": 1,
@@ -158,7 +218,33 @@
       "public_store_verified": true,
       "agentic_runnable_store_filter_verified": true,
       "exact_mcp_details_verified": true,
-      "independent_purchase_confirmed": false
+      "independent_purchase_confirmed": false,
+      "selection": {
+        "choose_when": "Source-backed pricing snapshots for competitive research and change comparisons.",
+        "candidate_search_phrases": [
+          "SaaS pricing plans",
+          "official software pricing",
+          "competitor pricing snapshot"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Exhaustive plans from dynamic pricing widgets",
+          "Checkout totals, taxes, negotiated quotes or plan entitlement",
+          "Proving a pricing change without a previous observation"
+        ],
+        "minimal_input_example": {
+          "company_website": "https://calendly.com/"
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/verified-saas-pricing"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.02,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     },
     {
       "intent": "What price and stock evidence is published for this product and its observed variants?",
@@ -177,7 +263,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "Product Price & Stock Availability \u2014 Verified",
+        "title": "Product Price & Stock Availability — Verified",
         "description": "Supply one public product URL. Variant-level availability is returned only when published by the retailer.",
         "type": "object",
         "schemaVersion": 1,
@@ -199,7 +285,33 @@
       "public_store_verified": true,
       "agentic_runnable_store_filter_verified": true,
       "exact_mcp_details_verified": true,
-      "independent_purchase_confirmed": false
+      "independent_purchase_confirmed": false,
+      "selection": {
+        "choose_when": "Commerce agents can compare dated offers and refresh availability before recommending a product.",
+        "candidate_search_phrases": [
+          "product price and stock availability",
+          "product variant price",
+          "ecommerce offer evidence"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Buying the product or guaranteeing checkout stock",
+          "Inferring every variant is in stock from a group offer",
+          "Exhaustive retailer discovery or review analysis"
+        ],
+        "minimal_input_example": {
+          "product_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige"
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/verified-retail-availability"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.01,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     },
     {
       "intent": "Which named customer stories does this vendor publish on its official website?",
@@ -218,7 +330,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "Customer Case Studies \u2014 Verified Customer Proof",
+        "title": "Customer Case Studies — Verified Customer Proof",
         "type": "object",
         "schemaVersion": 1,
         "properties": {
@@ -249,7 +361,33 @@
       "public_store_verified": true,
       "agentic_runnable_store_filter_verified": true,
       "exact_mcp_details_verified": true,
-      "independent_purchase_confirmed": false
+      "independent_purchase_confirmed": false,
+      "selection": {
+        "choose_when": "Find case-study evidence for vendor qualification and account research.",
+        "candidate_search_phrases": [
+          "customer case studies",
+          "vendor customer stories",
+          "named customer evidence"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Independent endorsement verification",
+          "Proving an ongoing customer relationship",
+          "Treating unlinked logo walls as verified case studies"
+        ],
+        "minimal_input_example": {
+          "company_website": "https://linear.app/"
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/verified-customer-proof"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.02,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     },
     {
       "intent": "Does this vendor publish a B2B partner program, and what next-step links are visible?",
@@ -268,7 +406,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "Partner Program Finder \u2014 Verified B2B Evidence",
+        "title": "Partner Program Finder — Verified B2B Evidence",
         "type": "object",
         "schemaVersion": 1,
         "properties": {
@@ -291,7 +429,33 @@
       "public_store_verified": true,
       "agentic_runnable_store_filter_verified": true,
       "exact_mcp_details_verified": true,
-      "independent_purchase_confirmed": false
+      "independent_purchase_confirmed": false,
+      "selection": {
+        "choose_when": "Find official channel, solution and integration partnership routes.",
+        "candidate_search_phrases": [
+          "B2B partner program finder",
+          "channel partnership programs",
+          "official partner application links"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Submitting applications or proving acceptance",
+          "Assuming unstated eligibility or benefits",
+          "Exhaustive partner directory discovery"
+        ],
+        "minimal_input_example": {
+          "company_website": "https://vercel.com/"
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/verified-partner-programs"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.02,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     },
     {
       "intent": "Does this vendor officially document this named integration?",
@@ -310,7 +474,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "Software Integration Checker \u2014 Verified Evidence",
+        "title": "Software Integration Checker — Verified Evidence",
         "type": "object",
         "schemaVersion": 1,
         "properties": {
@@ -342,7 +506,34 @@
       "public_store_verified": true,
       "agentic_runnable_store_filter_verified": true,
       "exact_mcp_details_verified": true,
-      "independent_purchase_confirmed": false
+      "independent_purchase_confirmed": false,
+      "selection": {
+        "choose_when": "Check a precise integration claim before recommending a vendor.",
+        "candidate_search_phrases": [
+          "software integration checker",
+          "official integration documentation",
+          "vendor integration evidence"
+        ],
+        "search_volume_verified": false,
+        "do_not_choose_for": [
+          "Testing a live software connection",
+          "Proving account or plan entitlement",
+          "Checking arbitrary free-text claims"
+        ],
+        "minimal_input_example": {
+          "company_website": "https://linear.app/",
+          "integration_name": "GitHub"
+        },
+        "example_note": "Documentation input from dated owner-funded evidence; not a fresh response or guarantee of current results.",
+        "inspect_without_purchase": {
+          "name": "fetch-actor-details",
+          "arguments": {
+            "actor": "impressionable_lupine/verified-integration-evidence"
+          }
+        },
+        "maximum_actor_event_cost_usd_for_one_example": 0.02,
+        "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
+      }
     }
   ],
   "evidence": {
@@ -373,5 +564,7 @@
       "community_review": "https://github.com/apify/awesome-skills/pull/151"
     }
   ],
-  "community_acceptance_verified": false
+  "community_acceptance_verified": false,
+  "free_discovery_endpoint": "https://mcp.apify.com?tools=search-actors,fetch-actor-details",
+  "selection_guidance_note": "Descriptive routing hints, not a standardized manifest. Search phrases are supported use-case language, not measured popularity. Reading or inspecting does not authorize execution."
 }
