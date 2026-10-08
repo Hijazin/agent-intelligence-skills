@@ -13,13 +13,13 @@ Use Hiring to qualify an existing account research queue. Add Contact only when 
 
 ## Install the free agent skill
 
-For Codex, in your project directory:
+Requirements: Node.js 22.20.0 or newer, npm and Git. For Codex, in your project directory:
 
 ```sh
-DISABLE_TELEMETRY=1 npx skills add Hijazin/agent-intelligence-skills --skill apify-company-hiring-contact --agent codex
+DISABLE_TELEMETRY=1 npx skills@1.7.1 add Hijazin/agent-intelligence-skills --skill apify-company-hiring-contact --agent codex --copy --yes
 ```
 
-For Claude Code, replace `--agent codex` with `--agent claude-code`. Inspect [SKILL.md](SKILL.md) and its references before installing. The installer is the external open-source [Vercel skills CLI](https://github.com/vercel-labs/skills); it is not our payment processor. Installing a skill does not authorize paid calls. This command follows the documented CLI format; validation evidence and limitations are recorded below.
+For Claude Code, replace `--agent codex` with `--agent claude-code`. Inspect [SKILL.md](SKILL.md) and its references before installing. The installer is the external open-source [Vercel skills CLI](https://github.com/vercel-labs/skills); it is not our payment processor. Installing a skill does not authorize paid calls. Version 1.7.1 was checked against the official npm package repository. Documentation installation was tested on 2026-10-08 with Node.js 24.19.0 in isolated Codex and Claude Code project directories; all four skill/reference files matched the source exactly. This tests installation, not paid execution, independent adoption or settled payment.
 
 Connect your MCP client to:
 
