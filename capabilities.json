@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "type": "descriptive_capability_index",
-  "checked_at": "2026-10-08T05:56:16.726Z",
+  "checked_at": "2026-10-08T08:50:28.197Z",
   "publisher": {
     "name": "Boatify Rentals LLC",
     "maintainer": "Majd Hijazin",
@@ -29,7 +29,7 @@
       "actor_id": "DnTJ0PiYO5uNHgDKK",
       "store_url": "https://apify.com/impressionable_lupine/company-recent-job-openings",
       "public": true,
-      "build": "2.0.18",
+      "build": "2.0.19",
       "price": {
         "currency": "USD",
         "event": "verified-report",
@@ -39,7 +39,7 @@
         "recheck_before_purchase": true
       },
       "input_schema": {
-        "title": "Company Recent Job Openings",
+        "title": "Company Job Openings — Verified Hiring Signals",
         "type": "object",
         "schemaVersion": 1,
         "properties": {
@@ -73,8 +73,8 @@
           "company_website"
         ]
       },
-      "mcp_arguments_reference": "references/mcp-calls.json",
-      "output_example_reference": "references/output-examples.json",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
       "verification_scope": "A current listing in the company-linked public careers or ATS source, with explicit publication metadata. Republishing is labeled.",
       "coverage_limits": "Unsupported ATS, undated listings, blocked sources and incomplete coverage remain unknown. A verified negative covers only the checked sources.",
       "request_bounds": "40 requests, 24 MB total, 5 MB per page, 90-second network budget.",
@@ -105,7 +105,10 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.03,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "job.find",
+      "metadata_checked_at": "2026-10-08T08:50:25.639Z",
+      "reference_service_key": "job.find"
     },
     {
       "intent": "Which public contact routes are advertised on this supplied business website?",
@@ -114,7 +117,7 @@
       "actor_id": "zATaaVqLePrcoF50q",
       "store_url": "https://apify.com/impressionable_lupine/verified-contact-booking-signals",
       "public": true,
-      "build": "0.2.2",
+      "build": "0.2.3",
       "price": {
         "currency": "USD",
         "event": "verified-contact-report",
@@ -141,8 +144,8 @@
           "company_website"
         ]
       },
-      "mcp_arguments_reference": "references/mcp-calls.json",
-      "output_example_reference": "references/output-examples.json",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
       "verification_scope": "A contact route observed on checked official website pages, with a source URL and timestamp.",
       "coverage_limits": "This checks publication, not mailbox deliverability, decision-maker identity or completed booking. No observed route is not proof none exists.",
       "request_bounds": "4 requests, 6 MB total, 3 MB per page, 22-second network budget.",
@@ -171,7 +174,10 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.01,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "contact.find",
+      "metadata_checked_at": "2026-10-08T08:50:26.967Z",
+      "reference_service_key": "contact.find"
     },
     {
       "intent": "What plans and prices does this vendor display on its official pricing pages?",
@@ -244,7 +250,12 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.02,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "pricing.check",
+      "metadata_checked_at": "2026-10-08T08:50:26.273Z",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
+      "reference_service_key": "pricing.check"
     },
     {
       "intent": "What price and stock evidence is published for this product and its observed variants?",
@@ -311,7 +322,12 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.01,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "product.check",
+      "metadata_checked_at": "2026-10-08T08:50:26.623Z",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
+      "reference_service_key": "product.check"
     },
     {
       "intent": "Which named customer stories does this vendor publish on its official website?",
@@ -387,7 +403,12 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.02,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "customer.evidence",
+      "metadata_checked_at": "2026-10-08T08:50:27.494Z",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
+      "reference_service_key": "customer.evidence"
     },
     {
       "intent": "Does this vendor publish a B2B partner program, and what next-step links are visible?",
@@ -455,7 +476,12 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.02,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "partner.find",
+      "metadata_checked_at": "2026-10-08T08:50:27.847Z",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
+      "reference_service_key": "partner.find"
     },
     {
       "intent": "Does this vendor officially document this named integration?",
@@ -533,18 +559,35 @@
         },
         "maximum_actor_event_cost_usd_for_one_example": 0.02,
         "before_purchase": "Confirm exact public Actor, current build/input schema, event price and included platform usage; obtain caller spending authorization. Stop if terms are absent or changed."
-      }
+      },
+      "capability": "integration.verify",
+      "metadata_checked_at": "2026-10-08T08:50:28.197Z",
+      "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
+      "output_example_reference": "references/validated-examples-2026-10-08.json",
+      "reference_service_key": "integration.verify"
     }
   ],
   "evidence": {
-    "examples_observed_on": "2026-10-04",
+    "examples_observed_on": "2026-10-08",
     "example_origin": "owner-funded cloud tests",
     "fresh_paid_end_to_end_test_for_package": false,
     "independent_purchase_verified": false,
     "runtime_fixes_deployed": true,
     "owner_funded_release_cloud_tests_on": "2026-10-08",
     "owner_funded_release_cloud_tests_count": 6,
-    "release_transport": "Apify SDK/API; not a live MCP or n8n client execution"
+    "release_transport": "Apify SDK/API; not a live MCP or n8n client execution",
+    "current_examples_reference": "references/validated-examples-2026-10-08.json",
+    "historical_examples_reference": "references/output-examples.json (unchanged 2026-10-04 archive)",
+    "current_examples_are_new_runs_for_this_package": false,
+    "latest_hiring_contact_documentation_release": {
+      "builds": {
+        "hiring": "2.0.19",
+        "contact": "0.2.3"
+      },
+      "runtime_changed": false,
+      "owner_funded_validation_runs": 2,
+      "independent_customer_payment_verified": false
+    }
   },
   "usage_boundary": "No discovery of companies, people identity/deliverability verification, proof of buying intent, outreach, top-ups, subscriptions or recurring purchases.",
   "skills": [
