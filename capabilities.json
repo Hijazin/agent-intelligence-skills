@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "type": "descriptive_capability_index",
+  "checked_at": "2026-10-08T03:18:16.900Z",
+  "publisher": {
+    "name": "Boatify Rentals LLC",
+    "maintainer": "Majd Hijazin",
+    "commercial_disclosure": "Maintainer owns the paid Actors and can receive eligible usage revenue."
+  },
+  "skill": {
+    "name": "apify-company-hiring-contact",
+    "source": "https://github.com/Hijazin/agent-intelligence-skills",
+    "path": "SKILL.md",
+    "community_review": "https://github.com/apify/awesome-skills/pull/149",
+    "community_acceptance_verified": false
+  },
+  "transport": {
+    "type": "Apify-hosted MCP",
+    "endpoint": "https://mcp.apify.com?tools=actors,runs,storage",
+    "authentication": "Caller-managed secure Apify OAuth or Authorization header",
+    "purchase_authorization_required": true,
+    "direct_x402_purchase_tested": false
+  },
+  "capabilities": [
+    {
+      "intent": "Are there source-dated recent live openings at this supplied company?",
+      "delivers": "Evidence-backed job records with date meanings and explicit coverage status",
+      "actor": "impressionable_lupine/company-recent-job-openings",
+      "actor_id": "DnTJ0PiYO5uNHgDKK",
+      "store_url": "https://apify.com/impressionable_lupine/company-recent-job-openings",
+      "public": true,
+      "build": "2.0.17",
+      "price": {
+        "currency": "USD",
+        "event": "verified-report",
+        "unit_price": 0.03,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Company Recent Job Openings",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Company website (required)",
+            "type": "string",
+            "description": "Public company domain or URL. One company per report. We follow its careers/ATS links; no source credentials needed. Do not supply an ATS URL directly.",
+            "editor": "textfield",
+            "prefill": "https://linear.app",
+            "maxLength": 2048
+          },
+          "lookback_days": {
+            "title": "Lookback days (optional)",
+            "type": "integer",
+            "description": "Default 30. UTC calendar-day window; only source-verifiable publication dates qualify. Republication is explicitly labeled.",
+            "default": 30,
+            "minimum": 1,
+            "maximum": 365
+          },
+          "max_jobs": {
+            "title": "Maximum jobs (advanced)",
+            "type": "integer",
+            "description": "Default 30; output cap 1\u2013100. Partial positives cost one report; complete dated negatives also cost one report. Unknown/failed checks are free. Raising this cap does not increase the 40-request budget.",
+            "default": 30,
+            "minimum": 1,
+            "maximum": 100,
+            "sectionCaption": "Advanced"
+          }
+        },
+        "required": [
+          "company_website"
+        ]
+      },
+      "mcp_arguments_reference": "references/mcp-calls.json",
+      "output_example_reference": "references/output-examples.json"
+    },
+    {
+      "intent": "Which public contact routes are advertised on this supplied business website?",
+      "delivers": "Page-observed public email, phone, contact and booking routes with evidence",
+      "actor": "impressionable_lupine/verified-contact-booking-signals",
+      "actor_id": "zATaaVqLePrcoF50q",
+      "store_url": "https://apify.com/impressionable_lupine/verified-contact-booking-signals",
+      "public": true,
+      "build": "0.2.1",
+      "price": {
+        "currency": "USD",
+        "event": "verified-contact-report",
+        "unit_price": 0.01,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Website Contact Finder \u2014 Email, Phone & Booking",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Company website",
+            "type": "string",
+            "description": "The business's official public HTTPS website.",
+            "editor": "textfield",
+            "pattern": "^https://",
+            "default": "https://plausible.io/"
+          }
+        },
+        "required": [
+          "company_website"
+        ]
+      },
+      "mcp_arguments_reference": "references/mcp-calls.json",
+      "output_example_reference": "references/output-examples.json"
+    }
+  ],
+  "evidence": {
+    "examples_observed_on": "2026-10-04",
+    "example_origin": "owner-funded cloud tests",
+    "fresh_paid_end_to_end_test_for_package": false,
+    "independent_purchase_verified": false,
+    "runtime_fixes_deployed": false
+  },
+  "usage_boundary": "No discovery of companies, people identity/deliverability verification, proof of buying intent, outreach, top-ups, subscriptions or recurring purchases."
+}
