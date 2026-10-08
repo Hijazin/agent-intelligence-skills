@@ -10,7 +10,7 @@
       },
       "waitSecs": 30,
       "callOptions": {
-        "build": "2.0.17",
+        "build": "2.0.18",
         "memory": 512,
         "timeout": 120,
         "maxTotalChargeUsd": 0.03
@@ -26,7 +26,7 @@
       },
       "waitSecs": 30,
       "callOptions": {
-        "build": "0.2.1",
+        "build": "0.2.2",
         "memory": 512,
         "timeout": 60,
         "maxTotalChargeUsd": 0.01
