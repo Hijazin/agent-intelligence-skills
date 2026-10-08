@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "type": "descriptive_capability_index",
-  "checked_at": "2026-10-08T05:16:42.416Z",
+  "checked_at": "2026-10-08T05:56:16.726Z",
   "publisher": {
     "name": "Boatify Rentals LLC",
     "maintainer": "Majd Hijazin",
@@ -29,7 +29,7 @@
       "actor_id": "DnTJ0PiYO5uNHgDKK",
       "store_url": "https://apify.com/impressionable_lupine/company-recent-job-openings",
       "public": true,
-      "build": "2.0.17",
+      "build": "2.0.18",
       "price": {
         "currency": "USD",
         "event": "verified-report",
@@ -83,7 +83,7 @@
       "actor_id": "zATaaVqLePrcoF50q",
       "store_url": "https://apify.com/impressionable_lupine/verified-contact-booking-signals",
       "public": true,
-      "build": "0.2.1",
+      "build": "0.2.2",
       "price": {
         "currency": "USD",
         "event": "verified-contact-report",
@@ -350,7 +350,10 @@
     "example_origin": "owner-funded cloud tests",
     "fresh_paid_end_to_end_test_for_package": false,
     "independent_purchase_verified": false,
-    "runtime_fixes_deployed": false
+    "runtime_fixes_deployed": true,
+    "owner_funded_release_cloud_tests_on": "2026-10-08",
+    "owner_funded_release_cloud_tests_count": 6,
+    "release_transport": "Apify SDK/API; not a live MCP or n8n client execution"
   },
   "usage_boundary": "No discovery of companies, people identity/deliverability verification, proof of buying intent, outreach, top-ups, subscriptions or recurring purchases.",
   "skills": [
