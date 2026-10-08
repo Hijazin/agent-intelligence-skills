@@ -41,8 +41,8 @@ Prices and builds below were checked on **2026-10-08**; inspect current details 
 
 | Intent | Public Actor | Expected event / maximum per company | Pinned build |
 |---|---|---|---|
-| Recent live company job openings with source publication evidence | [impressionable_lupine/company-recent-job-openings](https://apify.com/impressionable_lupine/company-recent-job-openings) | `verified-report`: $0.03, at most one event per run | `2.0.17` |
-| Public business email, phone, contact-page and booking routes | [impressionable_lupine/verified-contact-booking-signals](https://apify.com/impressionable_lupine/verified-contact-booking-signals) | `verified-contact-report`: $0.01, at most one event per run | `0.2.1` |
+| Recent live company job openings with source publication evidence | [impressionable_lupine/company-recent-job-openings](https://apify.com/impressionable_lupine/company-recent-job-openings) | `verified-report`: $0.03, at most one event per run | `2.0.18` |
+| Public business email, phone, contact-page and booking routes | [impressionable_lupine/verified-contact-booking-signals](https://apify.com/impressionable_lupine/verified-contact-booking-signals) | `verified-contact-report`: $0.01, at most one event per run | `0.2.2` |
 
 Standard Apify platform usage is included under the checked configuration. Hiring partial-positive reports and complete dated negatives within the checked source scope can be charged; unknown/invalid checks are not eligible. Contact charges for an eligible positive report, not for each email or phone; no-signal reports have no report event. An empty list alone does not establish either eligibility or a negative finding.
 
@@ -86,6 +86,6 @@ The skill has no persistent ledger implementation or scheduler; the host agent m
 
 ## Examples and validation limits
 
-[references/output-examples.json](references/output-examples.json) contains unmodified report objects from **owner-funded cloud checks on 2026-10-04**, with original inputs and timestamps. They are archived schema/examples, **not fresh results, independent purchases or demand evidence**. Contact's archived report-level billing fields are pre-charge observations; current pricing must come from metadata and the same run's receipt. No new paid run was used to validate this skill.
+[references/output-examples.json](references/output-examples.json) contains unmodified report objects from **owner-funded cloud checks on 2026-10-04**, with original inputs and timestamps. They are archived schema/examples, **not fresh results, independent purchases or demand evidence**. Contact's archived report-level billing fields are pre-charge observations; current pricing must come from metadata and the same run's receipt. The archived examples remain unchanged. On 2026-10-08, two owner-approved release builds and six bounded owner-funded cloud checks validated the new pinned builds; these are release evidence, not independent purchases.
 
-The distributed calls use the public builds above. Later local scanner/client fixes are not assumed deployed. Do not claim live end-to-end validation from offline replay of these examples. Read [references/verification-notes.md](references/verification-notes.md) for the specific checks and gaps.
+The distributed calls use the public builds above. Previously local source-handling correctness fixes are deployed in these pins. Linear produced verified jobs; Stripe returned a partial-positive report; Contact returned observed signals for Clinique Alpa and Plausible. Unsafe private-IP inputs returned invalid input with zero charged events for both services. These limited checks are not a broad coverage benchmark or a live MCP/n8n buyer test. Do not claim live end-to-end validation from offline replay of these examples. Read [references/verification-notes.md](references/verification-notes.md) for the specific checks and gaps.
