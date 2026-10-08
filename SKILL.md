@@ -1,6 +1,6 @@
 ---
 name: apify-company-hiring-contact
-description: Check recent job openings at supplied company websites and optionally enrich those same companies with source-backed public email, phone, contact-page and booking routes. Use for "verify which target accounts are hiring", "check recent company job openings", or "find contact routes on these official business websites". Distinguishes scoped negatives from unknown coverage and preserves source evidence. Not company discovery, person lookup, email deliverability verification, or proof of buying intent.
+description: Verify source-dated recent job openings at supplied official company websites, or find their published business email, phone and booking routes. Use for hiring evidence, account research and website contact enrichment. Not company discovery, person lookup or email deliverability verification.
 metadata:
   keywords: "company hiring, job openings, website contact, account enrichment, evidence, MCP, pay per event"
   category: data-extraction
@@ -24,6 +24,10 @@ Example requests:
 - "For the supplied companies with verified recent openings, add the public contact routes advertised on their websites; use my approved budget."
 - "Find the public email, phone and booking links on this business website, with evidence."
 - Boundary: "Find every German company currently shopping for cybersecurity and give me the CTO's verified email" is outside scope.
+
+## Inspect without spending
+
+For tool discovery and current details, use the anonymous read-only endpoint `https://mcp.apify.com?tools=search-actors,fetch-actor-details`. Inspect the exact Actor chosen from the table below before authorizing execution. No token is needed for those discovery tools; authenticated runs and storage access use the separate endpoint below.
 
 ## Requirements and payment boundary
 
@@ -50,7 +54,7 @@ For H hiring checks and C separately authorized contact checks, reserve at most 
 
 ## Workflow
 
-1. **Freeze the request.** Require supplied official public company websites, lookback window (1–365 days, default 30), output cap (1–100 jobs, default 30), requested contact fields, and caller-approved total budget. Do not use ATS URLs as the Hiring company input. Contact requires an HTTPS company website. Do not infer missing domains or people.
+1. **Freeze the request.** Use supplied official public company websites and the caller-approved scope and total budget. Unless the request specifies otherwise, use the documented Hiring defaults: 30-day lookback and at most 30 returned jobs (supported ranges: 1–365 days and 1–100 jobs). Contact-only requests need no Hiring parameters. Do not use ATS URLs as the Hiring company input. Contact requires an HTTPS company website. Do not infer missing domains or people.
 2. **Deduplicate and reserve.** Normalize scheme/hostname casing and discard URL fragments. Confirm whether www/subdomains represent the same company before merging them. Maintain a durable request ledger keyed by normalized company, exact input, Actor and build. Process sequentially; reserve the full per-run cap before starting. Skip duplicate approved requests already in progress or completed with sufficiently fresh matching evidence.
 3. **Read current metadata.** Call `fetch-actor-details` for each selected Actor, requesting pricing, input schema, output schema, metadata and README. Confirm the exact public Actor and single expected event, usage-included setting and runnable build using current metadata/Console/API where the MCP details are incomplete. Do not treat omitted fields as affirmative proof. If a required check is unknown, stop before purchase.
 4. **Run the bounded operation.** Use [references/mcp-calls.json](references/mcp-calls.json). Set the supplied company input and keep `maxTotalChargeUsd`, memory and timeout in `callOptions`. The charge cap limits billing, not acquisition work; the timeout and Actor's own request budget bound work. Start Hiring only if hiring was requested; a contact-only request should use Contact alone.
