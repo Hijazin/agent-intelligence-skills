@@ -1,0 +1,1187 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Dated full report examples and bounded caller-authorized API/MCP templates for seven public Actors.",
+  "metadata_checked_at": "2026-10-08T08:50:28.197Z",
+  "example_origin": "Previously completed owner-funded Apify SDK/API release tests; no new run for this package.",
+  "independent_customer_payment_verified": false,
+  "live_mcp_execution_verified_for_these_templates": false,
+  "billing_note": "Reports are unmodified observation records and may precede final event charging. Their billing fields alone do not establish a settled debit, customer purchase or publisher revenue.",
+  "recovery": "Save the returned run ID; reconcile that same run before any new purchase. Do not automatically retry run creation after timeout or ambiguous response.",
+  "services": [
+    {
+      "capability": "job.find",
+      "actor": "impressionable_lupine/company-recent-job-openings",
+      "actor_id": "DnTJ0PiYO5uNHgDKK",
+      "store_url": "https://apify.com/impressionable_lupine/company-recent-job-openings",
+      "purpose": "Evidence-backed job records with date meanings and explicit coverage status",
+      "verification_scope": "A current listing in the company-linked public careers or ATS source, with explicit publication metadata. Republishing is labeled.",
+      "coverage_limits": "Unsupported ATS, undated listings, blocked sources and incomplete coverage remain unknown. A verified negative covers only the checked sources.",
+      "input": {
+        "company_website": "https://linear.app",
+        "lookback_days": 30,
+        "max_jobs": 5
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-report",
+        "unit_price": 0.03,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/company-recent-job-openings",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/company-recent-job-openings",
+          "input": {
+            "company_website": "https://linear.app",
+            "lookback_days": 30,
+            "max_jobs": 5
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "2.0.19",
+            "memory": 512,
+            "timeout": 120,
+            "maxTotalChargeUsd": 0.03
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/DnTJ0PiYO5uNHgDKK/runs?build=2.0.19&memory=512&timeout=120&maxTotalChargeUsd=0.03&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "company_website": "https://linear.app",
+          "lookback_days": 30,
+          "max_jobs": 5
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "iccSKN2vi1E4Emrv7",
+        "build_id": "9jwwlfWj8z5WuvYsu",
+        "build_number": "2.0.19",
+        "started_at": "2026-10-08T08:40:26.633Z",
+        "finished_at": "2026-10-08T08:40:32.035Z",
+        "checked_at": "2026-10-08T08:40:30.428Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "552ed60c1f8f3281d3aeb008b4df1ca111d392bfd5bc237f10a16e53112d3642"
+        }
+      },
+      "report": {
+        "schema_version": "2.0",
+        "report_id": "11860dde599cbaa9229e2fc44eb5bae20c1f6d4d94498c024c9ed79c7e3be392",
+        "request_fingerprint": "6f0c62467843fcefb6b3a252a57e195f581f381f31d7680a9a37499ff7f8ebbc",
+        "company_website": "https://linear.app/",
+        "lookback_days": 30,
+        "checked_at": "2026-10-08T08:40:30.428Z",
+        "completed_at": "2026-10-08T08:40:31.391Z",
+        "status": "success",
+        "signal_status": "verified_recent_openings",
+        "job_count": 5,
+        "jobs": [
+          {
+            "job_key": "9e7f5034ddb9e18fd4568f5b973c1a74275ba0a6a54c6725805150e5200f814e",
+            "title": "Account Executive, Enterprise",
+            "location": "Singapore",
+            "published_date": "2026-10-06T00:55:56.942Z",
+            "date_meaning": "last_published",
+            "source_url": "https://jobs.ashbyhq.com/Linear/6dd5500a-4bd4-4f57-ba09-7b07acefecf4",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "provider": "ashby",
+            "provider_id": "6dd5500a-4bd4-4f57-ba09-7b07acefecf4",
+            "evidence_url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "evidence_field": "jobs[].publishedAt",
+            "raw_published_date": "2026-10-06T00:55:56.942+00:00",
+            "evidence_sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b",
+            "current_status_basis": "Present in the linked public ATS live job feed"
+          },
+          {
+            "job_key": "6298660be9f6050c471f7df3f59fd9e33573d8a46a35a43ccbd09d0eb6d36998",
+            "title": "Account Executive, Growth ",
+            "location": "Singapore",
+            "published_date": "2026-10-06T00:26:55.003Z",
+            "date_meaning": "last_published",
+            "source_url": "https://jobs.ashbyhq.com/Linear/cb8e77a6-4316-45c6-ac8d-7ade980cd65e",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "provider": "ashby",
+            "provider_id": "cb8e77a6-4316-45c6-ac8d-7ade980cd65e",
+            "evidence_url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "evidence_field": "jobs[].publishedAt",
+            "raw_published_date": "2026-10-06T00:26:55.003+00:00",
+            "evidence_sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b",
+            "current_status_basis": "Present in the linked public ATS live job feed"
+          },
+          {
+            "job_key": "2e878e9301545880d8f7f1899fdd67dbc0a84c491a033efb3dd584b66212aca0",
+            "title": "Design Engineer (Web & Brand)",
+            "location": "Europe",
+            "published_date": "2026-09-15T18:05:47.890Z",
+            "date_meaning": "last_published",
+            "source_url": "https://jobs.ashbyhq.com/Linear/ea0b5868-6d7a-46fa-99d8-207cd19357a6",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "provider": "ashby",
+            "provider_id": "ea0b5868-6d7a-46fa-99d8-207cd19357a6",
+            "evidence_url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "evidence_field": "jobs[].publishedAt",
+            "raw_published_date": "2026-09-15T18:05:47.890+00:00",
+            "evidence_sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b",
+            "current_status_basis": "Present in the linked public ATS live job feed"
+          },
+          {
+            "job_key": "7d3523754562a17370c893b29af1d170319d778a917a20595a169df7e37c0b6f",
+            "title": "Design Engineer (Web & Brand)",
+            "location": "North America",
+            "published_date": "2026-09-15T18:05:31.687Z",
+            "date_meaning": "last_published",
+            "source_url": "https://jobs.ashbyhq.com/Linear/f04f398b-6320-499d-8a60-290239d62da8",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "provider": "ashby",
+            "provider_id": "f04f398b-6320-499d-8a60-290239d62da8",
+            "evidence_url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "evidence_field": "jobs[].publishedAt",
+            "raw_published_date": "2026-09-15T18:05:31.687+00:00",
+            "evidence_sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b",
+            "current_status_basis": "Present in the linked public ATS live job feed"
+          },
+          {
+            "job_key": "1b4091e1f356b1f23fd18ea1cbcc69cfddf15e3803a77640fedf53a685f7828b",
+            "title": "Product Support Specialist, Europe",
+            "location": "Europe",
+            "published_date": "2026-09-10T15:44:21.164Z",
+            "date_meaning": "last_published",
+            "source_url": "https://jobs.ashbyhq.com/Linear/820d0d5a-0930-475c-b494-23e18ad2aa68",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "provider": "ashby",
+            "provider_id": "820d0d5a-0930-475c-b494-23e18ad2aa68",
+            "evidence_url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "evidence_field": "jobs[].publishedAt",
+            "raw_published_date": "2026-09-10T15:44:21.164+00:00",
+            "evidence_sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b",
+            "current_status_basis": "Present in the linked public ATS live job feed"
+          }
+        ],
+        "undated_jobs": [],
+        "coverage_complete": true,
+        "coverage_scope": "Linked public sources checked within the stated budget; not the whole web.",
+        "listings_seen": 31,
+        "dated_listings": 31,
+        "verified_recent_count": 5,
+        "excluded_counts": {
+          "outside_window": 26
+        },
+        "sources": [
+          {
+            "url": "https://linear.app/",
+            "discovered_from": null,
+            "linked_url": null,
+            "source_type": "company_page",
+            "checked_at": "2026-10-08T08:40:30.559Z",
+            "sha256": "f9bb99b2d52217217cbf8f72de2c2e3527379bea42cad58f170f9d3be293a6ad"
+          },
+          {
+            "url": "https://linear.app/careers",
+            "discovered_from": "https://linear.app/",
+            "linked_url": null,
+            "source_type": "company_page",
+            "checked_at": "2026-10-08T08:40:31.099Z",
+            "sha256": "40d8af606d7012ccf0a1efc585dcfa03450f6455f1871568fe7d6679d0731a03"
+          },
+          {
+            "url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "discovered_from": "https://linear.app/careers",
+            "linked_url": "https://jobs.ashbyhq.com/Linear/6dd5500a-4bd4-4f57-ba09-7b07acefecf4",
+            "source_type": "ashby",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b"
+          }
+        ],
+        "errors": [],
+        "error_code": null,
+        "error_message": null,
+        "retryable": false,
+        "suggested_action": "use_results",
+        "retry_after_seconds": null,
+        "billing_eligible": true,
+        "billing_event": "verified-report",
+        "billing_quantity": 1,
+        "billing_unit_price_usd": 0.03,
+        "billing_max_charge_usd": 0.03,
+        "pricing_status": "runtime_verified",
+        "paid_usage_confirmed": false,
+        "duration_ms": 959,
+        "http_request_count": 4,
+        "downloaded_bytes": 2166084,
+        "retry_count": 0,
+        "schema_valid": true,
+        "observation_type": "platform_run",
+        "request_log": [
+          {
+            "url": "https://linear.app/robots.txt",
+            "checked_at": "2026-10-08T08:40:30.430Z",
+            "http_status": 200,
+            "bytes": 107,
+            "sha256": "c5ff067087fda9581c88f7c9729b05eb8cc2502c41cdfe5ebbf498c667d38857",
+            "error_code": null
+          },
+          {
+            "url": "https://linear.app/",
+            "checked_at": "2026-10-08T08:40:30.559Z",
+            "http_status": 200,
+            "bytes": 1283835,
+            "sha256": "f9bb99b2d52217217cbf8f72de2c2e3527379bea42cad58f170f9d3be293a6ad",
+            "error_code": null
+          },
+          {
+            "url": "https://linear.app/careers",
+            "checked_at": "2026-10-08T08:40:31.099Z",
+            "http_status": 200,
+            "bytes": 466433,
+            "sha256": "40d8af606d7012ccf0a1efc585dcfa03450f6455f1871568fe7d6679d0731a03",
+            "error_code": null
+          },
+          {
+            "url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+            "checked_at": "2026-10-08T08:40:31.321Z",
+            "http_status": 200,
+            "bytes": 415709,
+            "sha256": "92900cf939e50381210d816ae4ff8962b64f3656bd6c464a347f00f2e5112e3b",
+            "error_code": null
+          }
+        ]
+      }
+    },
+    {
+      "capability": "pricing.check",
+      "actor": "impressionable_lupine/verified-saas-pricing",
+      "actor_id": "FqG15P6FbSTh0QPqq",
+      "store_url": "https://apify.com/impressionable_lupine/verified-saas-pricing",
+      "purpose": "Source-backed pricing snapshots for competitive research and change comparisons.",
+      "verification_scope": "A plan and displayed price are associated in the same checked source. Currency symbols and billing periods are preserved as stated.",
+      "coverage_limits": "Static extraction is not an exhaustive catalog. Regional prices, tax, discounts, add-ons and dynamic widgets may remain unknown. Do not infer an ISO currency from a symbol.",
+      "input": {
+        "company_website": "https://calendly.com/"
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-pricing-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-saas-pricing",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-saas-pricing",
+          "input": {
+            "company_website": "https://calendly.com/"
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "0.2.2",
+            "memory": 512,
+            "timeout": 60,
+            "maxTotalChargeUsd": 0.02
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/FqG15P6FbSTh0QPqq/runs?build=0.2.2&memory=512&timeout=60&maxTotalChargeUsd=0.02&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "company_website": "https://calendly.com/"
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "nEIY4bDwtJ3ECssdZ",
+        "build_id": "gBTzmwaAlFW742EHw",
+        "build_number": "0.2.2",
+        "started_at": "2026-10-08T05:12:04.206Z",
+        "finished_at": "2026-10-08T05:12:09.895Z",
+        "checked_at": "2026-10-08T05:12:07.390Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "02dc735ecd1288f6346200e4b5775987fda79210853c661eb9fa524dbc47d1af"
+        }
+      },
+      "report": {
+        "schema_version": "1.0",
+        "company_website": "https://calendly.com/",
+        "pricing_url": "https://calendly.com/pricing",
+        "status": "verified",
+        "plan_count": 3,
+        "plans": [
+          {
+            "plan_name": "Free",
+            "price_text": "Free",
+            "price_type": "free",
+            "currency_marker": null,
+            "billing_period": null,
+            "billing_note": null,
+            "source_url": "https://calendly.com/pricing",
+            "checked_at": "2026-10-08T05:12:08.192Z",
+            "evidence_text": "FreeAlways freeGet started",
+            "evidence_sha256": "dea308e80e37727db7672a246a299017f88056a316824ceba8f582abc6656c85",
+            "extraction_method": "semantic_card"
+          },
+          {
+            "plan_name": "Standard",
+            "price_text": "$10",
+            "price_type": "numeric",
+            "currency_marker": "$",
+            "billing_period": "month",
+            "billing_note": "Page billing controls mention billed yearly / billed monthly; active selection was not verified.",
+            "source_url": "https://calendly.com/pricing",
+            "checked_at": "2026-10-08T05:12:08.192Z",
+            "evidence_text": "StandardAdd Notetaker & Callie$10/seat/moSeats are required for users to connect calendars and host Calendly meetings - meeting invitees do not require a seat.Save 17%Get started [Page billing controls: billed yearly / billed monthly]",
+            "evidence_sha256": "dea308e80e37727db7672a246a299017f88056a316824ceba8f582abc6656c85",
+            "extraction_method": "semantic_card"
+          },
+          {
+            "plan_name": "Teams",
+            "price_text": "$16",
+            "price_type": "numeric",
+            "currency_marker": "$",
+            "billing_period": "month",
+            "billing_note": "Page billing controls mention billed yearly / billed monthly; active selection was not verified.",
+            "source_url": "https://calendly.com/pricing",
+            "checked_at": "2026-10-08T05:12:08.192Z",
+            "evidence_text": "TeamsAdd Notetaker & Callie$16/seat/moSeats are required for users to connect calendars and create Calendly links to help book meetings - meeting invitees do not require an account or seat.Save 20%Get started [Page billing controls: billed yearly / billed monthly]",
+            "evidence_sha256": "dea308e80e37727db7672a246a299017f88056a316824ceba8f582abc6656c85",
+            "extraction_method": "semantic_card"
+          }
+        ],
+        "ambiguous_cards": 0,
+        "coverage_complete": false,
+        "checked_urls": [
+          "https://calendly.com/",
+          "https://calendly.com/pricing"
+        ],
+        "source_errors": [],
+        "checked_at": "2026-10-08T05:12:07.390Z",
+        "completed_at": "2026-10-08T05:12:08.859Z",
+        "coverage_scope": "One public company website and up to three same-company pricing URLs; static HTML only.",
+        "error_code": null,
+        "error_message": null,
+        "http_request_count": 3,
+        "downloaded_bytes": 2058390,
+        "duration_ms": 1469,
+        "billing_event": null,
+        "billing_quantity": 0,
+        "report_id": "aa215c805444e558777525796a6b00cec0ebeb7f6712b5b0d9fe4c61eb95afea"
+      }
+    },
+    {
+      "capability": "product.check",
+      "actor": "impressionable_lupine/verified-retail-availability",
+      "actor_id": "1Huevg4n0rTdCWySV",
+      "store_url": "https://apify.com/impressionable_lupine/verified-retail-availability",
+      "purpose": "Commerce agents can compare dated offers and refresh availability before recommending a product.",
+      "verification_scope": "Checked product structured data and supported public variant metadata. Product-group and variant offers retain distinct scope.",
+      "coverage_limits": "Group stock does not prove every variant is available. Missing variant price stays null; regional checkout price and purchase completion are not tested.",
+      "input": {
+        "product_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige"
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-product-check",
+        "unit_price": 0.01,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-retail-availability",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-retail-availability",
+          "input": {
+            "product_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige"
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "0.2.3",
+            "memory": 512,
+            "timeout": 60,
+            "maxTotalChargeUsd": 0.01
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/1Huevg4n0rTdCWySV/runs?build=0.2.3&memory=512&timeout=60&maxTotalChargeUsd=0.01&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "product_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige"
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "SkfXnFThdD7hXfcI2",
+        "build_id": "RO1JqROfnM3LnXOVo",
+        "build_number": "0.2.3",
+        "started_at": "2026-10-08T05:12:31.688Z",
+        "finished_at": "2026-10-08T05:12:36.701Z",
+        "checked_at": "2026-10-08T05:12:34.865Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "acdf82ee07598026c320b2112bd6858f7ce32269ae8a8b706c29c8a2c768f1c2"
+        }
+      },
+      "report": {
+        "schema_version": "1.0",
+        "report_id": "6e2e160e857e3573de28fcf1d645ee000f929483170168a1fa7779e6a744515a",
+        "product_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige",
+        "product_name": "Men's Tree Runner",
+        "status": "verified",
+        "availability": "mixed",
+        "offers": [
+          {
+            "variant_name": null,
+            "sku": null,
+            "offer_scope": "product_group",
+            "price": 100,
+            "currency": "USD",
+            "availability": "in_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige",
+            "checked_at": "2026-10-08T05:12:35.093Z",
+            "evidence_field": "Product.offers[0]",
+            "evidence_sha256": "dbb27d5b461e63bd623df8fde05c08d2ccaabbc540b93c8779e4db0fa74d100d"
+          },
+          {
+            "variant_name": "8",
+            "sku": "TR3MWHE080",
+            "variant_id": "39480897110096",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "out_of_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          },
+          {
+            "variant_name": "9",
+            "sku": "TR3MWHE090",
+            "variant_id": "39480897142864",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "in_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          },
+          {
+            "variant_name": "10",
+            "sku": "TR3MWHE100",
+            "variant_id": "39480897175632",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "out_of_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          },
+          {
+            "variant_name": "11",
+            "sku": "TR3MWHE110",
+            "variant_id": "39480897208400",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "out_of_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          },
+          {
+            "variant_name": "12",
+            "sku": "TR3MWHE120",
+            "variant_id": "39480897241168",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "out_of_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          },
+          {
+            "variant_name": "13",
+            "sku": "TR3MWHE130",
+            "variant_id": "39480897273936",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "out_of_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          },
+          {
+            "variant_name": "14",
+            "sku": "TR3MWHE140",
+            "variant_id": "39480897306704",
+            "offer_scope": "variant",
+            "price": null,
+            "currency": null,
+            "availability": "out_of_stock",
+            "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige.js",
+            "checked_at": "2026-10-08T05:12:35.879Z",
+            "evidence_field": "ShopifyProduct.variants",
+            "evidence_sha256": "904416f83853bd76df34fbf7fc6fb99339503423a76f395cd56ca418c7f27df8"
+          }
+        ],
+        "offer_count": 8,
+        "variant_count_observed": 7,
+        "variants_truncated": false,
+        "variant_source_error": null,
+        "coverage_complete": false,
+        "checked_at": "2026-10-08T05:12:34.865Z",
+        "completed_at": "2026-10-08T05:12:36.005Z",
+        "error_code": null,
+        "error_message": null,
+        "source_url": "https://www.allbirds.com/products/mens-tree-runners-wheat-dark-beige",
+        "evidence_sha256": "dbb27d5b461e63bd623df8fde05c08d2ccaabbc540b93c8779e4db0fa74d100d",
+        "http_request_count": 3,
+        "downloaded_bytes": 857301,
+        "duration_ms": 1140,
+        "billing_event": null,
+        "billing_quantity": 0
+      }
+    },
+    {
+      "capability": "contact.find",
+      "actor": "impressionable_lupine/verified-contact-booking-signals",
+      "actor_id": "zATaaVqLePrcoF50q",
+      "store_url": "https://apify.com/impressionable_lupine/verified-contact-booking-signals",
+      "purpose": "Page-observed public email, phone, contact and booking routes with evidence",
+      "verification_scope": "A contact route observed on checked official website pages, with a source URL and timestamp.",
+      "coverage_limits": "This checks publication, not mailbox deliverability, decision-maker identity or completed booking. No observed route is not proof none exists.",
+      "input": {
+        "company_website": "https://cliniquealpa.co.uk/"
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-contact-report",
+        "unit_price": 0.01,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-contact-booking-signals",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-contact-booking-signals",
+          "input": {
+            "company_website": "https://cliniquealpa.co.uk/"
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "0.2.3",
+            "memory": 512,
+            "timeout": 60,
+            "maxTotalChargeUsd": 0.01
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/zATaaVqLePrcoF50q/runs?build=0.2.3&memory=512&timeout=60&maxTotalChargeUsd=0.01&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "company_website": "https://cliniquealpa.co.uk/"
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "Mb74YMiSOv2ehkyeL",
+        "build_id": "Fj1hxkmJ1SVXtS37g",
+        "build_number": "0.2.3",
+        "started_at": "2026-10-08T08:41:14.548Z",
+        "finished_at": "2026-10-08T08:41:18.348Z",
+        "checked_at": "2026-10-08T08:41:17.315Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "145c2994f36718e6ac086cf9d19960f8b5a263b709cfc55c6ab5656b1ab79677"
+        }
+      },
+      "report": {
+        "schema_version": "1.0",
+        "report_id": "455fcd4356b6343511a2e56a3def4ff0a970d52c1b8cbe26a7cef97f7f60be0f",
+        "company_website": "https://cliniquealpa.co.uk/",
+        "status": "verified",
+        "signals": [
+          {
+            "type": "email",
+            "value": "enquiries@cliniquealpa.co.uk",
+            "source_url": "https://cliniquealpa.co.uk/",
+            "checked_at": "2026-10-08T08:41:17.576Z",
+            "evidence_sha256": "b5f505ce168319d2b074baa2507da126d5e9b61d6e57d8690ca146e19acb4d48"
+          },
+          {
+            "type": "contact_page",
+            "value": "https://cliniquealpa.co.uk/contact/",
+            "source_url": "https://cliniquealpa.co.uk/",
+            "checked_at": "2026-10-08T08:41:17.576Z",
+            "evidence_sha256": "b5f505ce168319d2b074baa2507da126d5e9b61d6e57d8690ca146e19acb4d48"
+          },
+          {
+            "type": "phone",
+            "value": "+442088828088",
+            "source_url": "https://cliniquealpa.co.uk/",
+            "checked_at": "2026-10-08T08:41:17.576Z",
+            "evidence_sha256": "b5f505ce168319d2b074baa2507da126d5e9b61d6e57d8690ca146e19acb4d48"
+          },
+          {
+            "type": "booking_link",
+            "value": "https://cliniquealpa.co.uk/book-now/",
+            "source_url": "https://cliniquealpa.co.uk/",
+            "checked_at": "2026-10-08T08:41:17.576Z",
+            "evidence_sha256": "b5f505ce168319d2b074baa2507da126d5e9b61d6e57d8690ca146e19acb4d48"
+          }
+        ],
+        "email_count": 1,
+        "phone_count": 1,
+        "booking_link_count": 1,
+        "contact_page_count": 1,
+        "observed_signal_count": 4,
+        "signals_truncated": false,
+        "pages_checked": [
+          "https://cliniquealpa.co.uk/",
+          "https://cliniquealpa.co.uk/contact/"
+        ],
+        "coverage_complete": false,
+        "checked_at": "2026-10-08T08:41:17.315Z",
+        "completed_at": "2026-10-08T08:41:17.701Z",
+        "error_code": null,
+        "error_message": null,
+        "http_request_count": 3,
+        "downloaded_bytes": 129726,
+        "duration_ms": 386,
+        "billing_event": null,
+        "billing_quantity": 0
+      }
+    },
+    {
+      "capability": "customer.evidence",
+      "actor": "impressionable_lupine/verified-customer-proof",
+      "actor_id": "kRk9vTOnhmGMMrMCg",
+      "store_url": "https://apify.com/impressionable_lupine/verified-customer-proof",
+      "purpose": "Find case-study evidence for vendor qualification and account research.",
+      "verification_scope": "Named customers and stories verified on vendor-linked first-party case-study pages.",
+      "coverage_limits": "These are vendor-published claims, not independent endorsements or proof the relationship is current. Generic logo walls alone are insufficient.",
+      "input": {
+        "company_website": "https://linear.app/"
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-customer-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-customer-proof",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-customer-proof",
+          "input": {
+            "company_website": "https://linear.app/"
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "0.2.2",
+            "memory": 512,
+            "timeout": 60,
+            "maxTotalChargeUsd": 0.02
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/kRk9vTOnhmGMMrMCg/runs?build=0.2.2&memory=512&timeout=60&maxTotalChargeUsd=0.02&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "company_website": "https://linear.app/"
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "KoObjuzcWpB23gMam",
+        "build_id": "RE96htkDTOgacaLDr",
+        "build_number": "0.2.2",
+        "started_at": "2026-10-08T05:12:54.763Z",
+        "finished_at": "2026-10-08T05:13:00.979Z",
+        "checked_at": "2026-10-08T05:12:58.977Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "156670a4f5029132ea63298faa92108258c9172b27d4e64e8d06ca0ef6c0e809"
+        }
+      },
+      "report": {
+        "schema_version": "1.0",
+        "report_id": "05ef8a5fa83a4c3888e5171836a0bbd558be1ee76e2ed07ab06bd8c2cd91935d",
+        "company_website": "https://linear.app/",
+        "checked_at": "2026-10-08T05:12:58.977Z",
+        "completed_at": "2026-10-08T05:13:00.285Z",
+        "status": "verified_customer_proof",
+        "message": "Named customers confirmed on linked first-party story pages. This is not an exhaustive customer list.",
+        "customer_count": 5,
+        "customers": [
+          {
+            "customer_name": "Ramp",
+            "story_title": "The coding agent behind 75% of Ramp’s merged PRs",
+            "source_url": "https://linear.app/customers/ramp",
+            "name_evidence_field": "h1",
+            "checked_at": "2026-10-08T05:12:59.665Z",
+            "evidence_sha256": "60c6b30d73605d14cc0c6b90b1ab1e50c34a2e8ea01ef451993a8568a506ea3a"
+          },
+          {
+            "customer_name": "OpenAI",
+            "story_title": "Why OpenAI chose Linear and scaled to 3,000 users",
+            "source_url": "https://linear.app/customers/openai",
+            "name_evidence_field": "h1",
+            "checked_at": "2026-10-08T05:12:59.815Z",
+            "evidence_sha256": "1de3f0adbd9a4811a8d5e5f541b8a9189b23fb6e1127fb879253064cd7958be6"
+          },
+          {
+            "customer_name": "Coinbase",
+            "story_title": "Coinbase’s bet on agent-first development",
+            "source_url": "https://linear.app/customers/coinbase",
+            "name_evidence_field": "h1",
+            "checked_at": "2026-10-08T05:12:59.931Z",
+            "evidence_sha256": "56ed02cbc0825f2c614632aaa87d1992edeec00a544977f7b9f48d82c049d876"
+          },
+          {
+            "customer_name": "Oscar",
+            "story_title": "How teams at Oscar left one of the world’s most complex Jira instances",
+            "source_url": "https://linear.app/customers/oscar",
+            "name_evidence_field": "h1",
+            "checked_at": "2026-10-08T05:13:00.049Z",
+            "evidence_sha256": "7c61a78abce45969f2ff18c7e713f2fa78d8a4d0d57e41c9294ea86a24b92c80"
+          },
+          {
+            "customer_name": "Boom Supersonic",
+            "story_title": "Boom Supersonic builds as fast as it flies",
+            "source_url": "https://linear.app/customers/boom",
+            "name_evidence_field": "h1",
+            "checked_at": "2026-10-08T05:13:00.165Z",
+            "evidence_sha256": "267a169d856e45b09998f1f391aa374b7b064fa69bf23ee1ff81697b6c73c149"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://linear.app/",
+            "discovered_from": null,
+            "source_type": "company_homepage",
+            "checked_at": "2026-10-08T05:12:59.047Z",
+            "evidence_sha256": "c1f3d250cd1071fcae160eff61b2e4f7e86b5fda6dd20dc308d8e957841fe958"
+          },
+          {
+            "url": "https://linear.app/customers",
+            "discovered_from": "https://linear.app/",
+            "source_type": "customer_stories_index",
+            "checked_at": "2026-10-08T05:12:59.448Z",
+            "evidence_sha256": "dc5f3415cd607210b803b2b5ec7a7642f62d13a8cb1293f0ac26d9c87343412f"
+          },
+          {
+            "url": "https://linear.app/customers/ramp",
+            "discovered_from": "https://linear.app/customers",
+            "source_type": "customer_story",
+            "checked_at": "2026-10-08T05:12:59.665Z",
+            "evidence_sha256": "60c6b30d73605d14cc0c6b90b1ab1e50c34a2e8ea01ef451993a8568a506ea3a"
+          },
+          {
+            "url": "https://linear.app/customers/openai",
+            "discovered_from": "https://linear.app/customers",
+            "source_type": "customer_story",
+            "checked_at": "2026-10-08T05:12:59.815Z",
+            "evidence_sha256": "1de3f0adbd9a4811a8d5e5f541b8a9189b23fb6e1127fb879253064cd7958be6"
+          },
+          {
+            "url": "https://linear.app/customers/coinbase",
+            "discovered_from": "https://linear.app/customers",
+            "source_type": "customer_story",
+            "checked_at": "2026-10-08T05:12:59.931Z",
+            "evidence_sha256": "56ed02cbc0825f2c614632aaa87d1992edeec00a544977f7b9f48d82c049d876"
+          },
+          {
+            "url": "https://linear.app/customers/oscar",
+            "discovered_from": "https://linear.app/customers",
+            "source_type": "customer_story",
+            "checked_at": "2026-10-08T05:13:00.049Z",
+            "evidence_sha256": "7c61a78abce45969f2ff18c7e713f2fa78d8a4d0d57e41c9294ea86a24b92c80"
+          },
+          {
+            "url": "https://linear.app/customers/boom",
+            "discovered_from": "https://linear.app/customers",
+            "source_type": "customer_story",
+            "checked_at": "2026-10-08T05:13:00.165Z",
+            "evidence_sha256": "267a169d856e45b09998f1f391aa374b7b064fa69bf23ee1ff81697b6c73c149"
+          }
+        ],
+        "coverage_complete": false,
+        "source_errors": [],
+        "http_request_count": 8,
+        "downloaded_bytes": 4387057,
+        "duration_ms": 1308,
+        "billing_event": null,
+        "billing_quantity": 0
+      }
+    },
+    {
+      "capability": "partner.find",
+      "actor": "impressionable_lupine/verified-partner-programs",
+      "actor_id": "NSd4yuX7ShfX7R7QI",
+      "store_url": "https://apify.com/impressionable_lupine/verified-partner-programs",
+      "purpose": "Find official channel, solution and integration partnership routes.",
+      "verification_scope": "Explicit B2B program evidence in vendor-linked official pages, including program types when stated.",
+      "coverage_limits": "Observed application links are not submitted; eligibility, benefits and acceptance are not inferred.",
+      "input": {
+        "company_website": "https://vercel.com/"
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-partner-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-partner-programs",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-partner-programs",
+          "input": {
+            "company_website": "https://vercel.com/"
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "0.2.2",
+            "memory": 512,
+            "timeout": 60,
+            "maxTotalChargeUsd": 0.02
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/NSd4yuX7ShfX7R7QI/runs?build=0.2.2&memory=512&timeout=60&maxTotalChargeUsd=0.02&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "company_website": "https://vercel.com/"
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "s2cFYKBSrOTSqAt3V",
+        "build_id": "nPoKnpaVgrAvla8P3",
+        "build_number": "0.2.2",
+        "started_at": "2026-10-08T05:13:20.577Z",
+        "finished_at": "2026-10-08T05:13:25.436Z",
+        "checked_at": "2026-10-08T05:13:23.589Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "072771bbe698f9c13782c01e7626da8d90dfbebb4ddce633631640022b3628ea"
+        }
+      },
+      "report": {
+        "schema_version": "1.0",
+        "report_id": "70bbf68df6a945f19c2b93f7c3b0b266652ccdad62e8762e16a376b189a9e674",
+        "company_website": "https://vercel.com/",
+        "checked_at": "2026-10-08T05:13:23.589Z",
+        "completed_at": "2026-10-08T05:13:24.634Z",
+        "status": "verified_partner_program",
+        "message": "Public partner-program evidence found on linked first-party pages. Eligibility, acceptance and application availability are not guaranteed.",
+        "program_count": 1,
+        "programs": [
+          {
+            "program_title": "Become a partner",
+            "program_types": [
+              "solution"
+            ],
+            "source_url": "https://vercel.com/partners/solution-partners",
+            "evidence_field": "page_body",
+            "evidence_text": "d the right solution partner to help you ship your next project. Find a partner Become a partner AKQA is a global design and innovation company with 2,200 professionals across 20 countries, recognized by Cannes Lions, Gartner, and Fast Comp",
+            "action_link_url": "https://vercel.com/partners",
+            "action_link_text": "Become a partner",
+            "action_destination_checked": false,
+            "checked_at": "2026-10-08T05:13:24.444Z",
+            "evidence_sha256": "3b827eef05c43df89040db111051d686b33b5178d5b1ca1f0370c0384daa54c1"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://vercel.com/",
+            "discovered_from": null,
+            "source_type": "company_homepage",
+            "checked_at": "2026-10-08T05:13:23.862Z",
+            "evidence_sha256": "b6cedda66fc27469814008a35a5413f8d4b898e1686acf188afb34a49fcd8ab1"
+          },
+          {
+            "url": "https://vercel.com/partners/aws",
+            "discovered_from": "https://vercel.com/",
+            "source_type": "partner_program_candidate",
+            "checked_at": "2026-10-08T05:13:24.228Z",
+            "evidence_sha256": "08ca9860eeb41b5bc1c38b3652993f34372a16003844bef9f462b8093496ed4b"
+          },
+          {
+            "url": "https://vercel.com/partners/solution-partners",
+            "discovered_from": "https://vercel.com/",
+            "source_type": "partner_program_candidate",
+            "checked_at": "2026-10-08T05:13:24.444Z",
+            "evidence_sha256": "3b827eef05c43df89040db111051d686b33b5178d5b1ca1f0370c0384daa54c1"
+          }
+        ],
+        "coverage_complete": false,
+        "source_errors": [],
+        "http_request_count": 4,
+        "downloaded_bytes": 1950185,
+        "duration_ms": 1045,
+        "billing_event": null,
+        "billing_quantity": 0
+      }
+    },
+    {
+      "capability": "integration.verify",
+      "actor": "impressionable_lupine/verified-integration-evidence",
+      "actor_id": "VNySEt559gcOuwjE9",
+      "store_url": "https://apify.com/impressionable_lupine/verified-integration-evidence",
+      "purpose": "Check a precise integration claim before recommending a vendor.",
+      "verification_scope": "Official linked documentation explicitly identifies the requested integration.",
+      "coverage_limits": "Documentation does not establish a working connection, authentication, plan entitlement or current endpoint behavior.",
+      "input": {
+        "company_website": "https://linear.app/",
+        "integration_name": "GitHub"
+      },
+      "price": {
+        "currency": "USD",
+        "event": "verified-integration-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "inspect_without_purchase": {
+        "name": "fetch-actor-details",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-integration-evidence",
+          "output": {
+            "pricing": true,
+            "inputSchema": true,
+            "outputSchema": true,
+            "metadata": true,
+            "readme": true
+          }
+        }
+      },
+      "mcp_call_after_spending_authorization": {
+        "name": "call-actor",
+        "arguments": {
+          "actor": "impressionable_lupine/verified-integration-evidence",
+          "input": {
+            "company_website": "https://linear.app/",
+            "integration_name": "GitHub"
+          },
+          "waitSecs": 30,
+          "callOptions": {
+            "build": "0.2.3",
+            "memory": 512,
+            "timeout": 60,
+            "maxTotalChargeUsd": 0.02
+          }
+        }
+      },
+      "api_call_after_spending_authorization": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/VNySEt559gcOuwjE9/runs?build=0.2.3&memory=512&timeout=60&maxTotalChargeUsd=0.02&waitForFinish=30",
+        "authentication": "Caller-managed Authorization: Bearer token in a secure HTTP client; never put credentials in the URL.",
+        "content_type": "application/json",
+        "body": {
+          "company_website": "https://linear.app/",
+          "integration_name": "GitHub"
+        },
+        "automatic_run_creation_retries": false
+      },
+      "observed_release": {
+        "run_id": "Oku8wFO3b5cTRTJBs",
+        "build_id": "3XsqNqM1e49tq5vKk",
+        "build_number": "0.2.3",
+        "started_at": "2026-10-08T05:13:47.629Z",
+        "finished_at": "2026-10-08T05:13:58.484Z",
+        "checked_at": "2026-10-08T05:13:50.042Z",
+        "owner_funded": true,
+        "independent_customer_payment": false,
+        "transport": "Apify SDK/API",
+        "report_integrity": {
+          "algorithm": "SHA256 of UTF-8 JSON, keys sorted, separators comma/colon, ensure_ascii=false",
+          "sha256": "497bd2f9e466d01332279a8972d058c66ab64f8e0037226fb2170223f72b039e"
+        }
+      },
+      "report": {
+        "schema_version": "1.0",
+        "report_id": "17aafd4f1b0249ca599703bea9895c450cad9de2c33c63a4b572da2fe3a36070",
+        "company_website": "https://linear.app/",
+        "integration_name": "GitHub",
+        "checked_at": "2026-10-08T05:13:50.042Z",
+        "completed_at": "2026-10-08T05:13:57.702Z",
+        "status": "verified_integration",
+        "message": "Official company source describes this integration; configuration and availability were not tested.",
+        "integration": {
+          "integration_name": "GitHub",
+          "source_url": "https://linear.app/integrations/github",
+          "source_title": "Connect GitHub to automate PR workflows, review code in Linear, sync issues and understand your codebase with Linear Agent",
+          "evidence_text": "Integrations GitHub Connect GitHub to automate PR workflows, review code in Linear, sync issues and understand your codebase with Linear Agent Review ",
+          "verification_scope": "Official vendor page describes an integration; connection, features, authentication, and current availability were not tested.",
+          "checked_at": "2026-10-08T05:13:57.492Z",
+          "evidence_sha256": "ee3c1b1d267a09cae4049faab6af595786ff7c46add4395abfedd737f9cb140d"
+        },
+        "sources": [
+          {
+            "url": "https://linear.app/",
+            "discovered_from": null,
+            "source_type": "company_homepage",
+            "checked_at": "2026-10-08T05:13:50.112Z",
+            "evidence_sha256": "81327592d73c2abb1d532ce41541154925ce6075e1d4980b2028a4cc20665cb2"
+          },
+          {
+            "url": "https://linear.app/integrations",
+            "discovered_from": "https://linear.app/",
+            "source_type": "integration_directory",
+            "checked_at": "2026-10-08T05:13:50.553Z",
+            "evidence_sha256": "785e9667a80fdd0e09833c19f1aaa6b095ea3decd84866cfdde3af332bd690f0"
+          },
+          {
+            "url": "https://linear.app/integrations/github",
+            "discovered_from": "https://linear.app/integrations",
+            "source_type": "target_integration_candidate",
+            "checked_at": "2026-10-08T05:13:57.492Z",
+            "evidence_sha256": "ee3c1b1d267a09cae4049faab6af595786ff7c46add4395abfedd737f9cb140d"
+          }
+        ],
+        "source_errors": [],
+        "coverage_complete": false,
+        "http_request_count": 4,
+        "downloaded_bytes": 2671111,
+        "duration_ms": 7660,
+        "billing_event": null,
+        "billing_quantity": 0
+      }
+    }
+  ]
+}
