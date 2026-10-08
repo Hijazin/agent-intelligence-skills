@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "type": "descriptive_capability_index",
-  "checked_at": "2026-10-08T03:18:16.900Z",
+  "checked_at": "2026-10-08T05:16:42.416Z",
   "publisher": {
     "name": "Boatify Rentals LLC",
     "maintainer": "Majd Hijazin",
@@ -112,6 +112,237 @@
       },
       "mcp_arguments_reference": "references/mcp-calls.json",
       "output_example_reference": "references/output-examples.json"
+    },
+    {
+      "intent": "What plans and prices does this vendor display on its official pricing pages?",
+      "delivers": "Source-backed pricing snapshots for competitive research and change comparisons.",
+      "actor": "impressionable_lupine/verified-saas-pricing",
+      "actor_id": "FqG15P6FbSTh0QPqq",
+      "store_url": "https://apify.com/impressionable_lupine/verified-saas-pricing",
+      "public": true,
+      "build": "0.2.2",
+      "price": {
+        "currency": "USD",
+        "event": "verified-pricing-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "SaaS Pricing Plans & Prices \u2014 Verified Reports",
+        "description": "Supply one public company website. An explicit pricing URL is optional.",
+        "type": "object",
+        "schemaVersion": 1,
+        "required": [
+          "company_website"
+        ],
+        "properties": {
+          "company_website": {
+            "title": "Company website",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Public SaaS company domain or HTTPS URL, for example linear.app."
+          },
+          "pricing_url": {
+            "title": "Pricing page URL (optional)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Public pricing page on the same registrable company domain. If omitted, the Actor follows a pricing link on the homepage or tries /pricing."
+          }
+        }
+      },
+      "verification_scope": "A plan and displayed price are associated in the same checked source. Currency symbols and billing periods are preserved as stated.",
+      "coverage_limits": "Static extraction is not an exhaustive catalog. Regional prices, tax, discounts, add-ons and dynamic widgets may remain unknown. Do not infer an ISO currency from a symbol.",
+      "request_bounds": "8 requests, 8 MB total, 3 MB per page, 35-second network budget.",
+      "public_store_verified": true,
+      "agentic_runnable_store_filter_verified": true,
+      "exact_mcp_details_verified": true,
+      "independent_purchase_confirmed": false
+    },
+    {
+      "intent": "What price and stock evidence is published for this product and its observed variants?",
+      "delivers": "Commerce agents can compare dated offers and refresh availability before recommending a product.",
+      "actor": "impressionable_lupine/verified-retail-availability",
+      "actor_id": "1Huevg4n0rTdCWySV",
+      "store_url": "https://apify.com/impressionable_lupine/verified-retail-availability",
+      "public": true,
+      "build": "0.2.3",
+      "price": {
+        "currency": "USD",
+        "event": "verified-product-check",
+        "unit_price": 0.01,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Product Price & Stock Availability \u2014 Verified",
+        "description": "Supply one public product URL. Variant-level availability is returned only when published by the retailer.",
+        "type": "object",
+        "schemaVersion": 1,
+        "required": [
+          "product_url"
+        ],
+        "properties": {
+          "product_url": {
+            "title": "Public product URL",
+            "type": "string",
+            "editor": "textfield",
+            "description": "HTTPS URL for one product page, not a collection, search, cart, or account page."
+          }
+        }
+      },
+      "verification_scope": "Checked product structured data and supported public variant metadata. Product-group and variant offers retain distinct scope.",
+      "coverage_limits": "Group stock does not prove every variant is available. Missing variant price stays null; regional checkout price and purchase completion are not tested.",
+      "request_bounds": "3 requests, 4 MB total, 3 MB per page, 20-second network budget.",
+      "public_store_verified": true,
+      "agentic_runnable_store_filter_verified": true,
+      "exact_mcp_details_verified": true,
+      "independent_purchase_confirmed": false
+    },
+    {
+      "intent": "Which named customer stories does this vendor publish on its official website?",
+      "delivers": "Find case-study evidence for vendor qualification and account research.",
+      "actor": "impressionable_lupine/verified-customer-proof",
+      "actor_id": "kRk9vTOnhmGMMrMCg",
+      "store_url": "https://apify.com/impressionable_lupine/verified-customer-proof",
+      "public": true,
+      "build": "0.2.2",
+      "price": {
+        "currency": "USD",
+        "event": "verified-customer-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Customer Case Studies \u2014 Verified Customer Proof",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Official company website",
+            "type": "string",
+            "description": "One public, official company domain or HTTPS URL. The Actor follows same-company customer stories only.",
+            "editor": "textfield",
+            "prefill": "https://linear.app",
+            "maxLength": 2048
+          },
+          "max_customers": {
+            "title": "Maximum verified customers",
+            "type": "integer",
+            "description": "Return at most this many verified story rows. Unverifiable links do not consume this limit; all checks remain within the request and time budget. The result is not exhaustive.",
+            "default": 5,
+            "minimum": 1,
+            "maximum": 6
+          }
+        },
+        "required": [
+          "company_website"
+        ]
+      },
+      "verification_scope": "Named customers and stories verified on vendor-linked first-party case-study pages.",
+      "coverage_limits": "These are vendor-published claims, not independent endorsements or proof the relationship is current. Generic logo walls alone are insufficient.",
+      "request_bounds": "12 requests, 10 MB total, 3 MB per page, 45-second network budget.",
+      "public_store_verified": true,
+      "agentic_runnable_store_filter_verified": true,
+      "exact_mcp_details_verified": true,
+      "independent_purchase_confirmed": false
+    },
+    {
+      "intent": "Does this vendor publish a B2B partner program, and what next-step links are visible?",
+      "delivers": "Find official channel, solution and integration partnership routes.",
+      "actor": "impressionable_lupine/verified-partner-programs",
+      "actor_id": "NSd4yuX7ShfX7R7QI",
+      "store_url": "https://apify.com/impressionable_lupine/verified-partner-programs",
+      "public": true,
+      "build": "0.2.2",
+      "price": {
+        "currency": "USD",
+        "event": "verified-partner-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Partner Program Finder \u2014 Verified B2B Evidence",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Official company website",
+            "type": "string",
+            "description": "One public official company domain or HTTPS URL. The Actor checks only linked same-company partner-program pages.",
+            "editor": "textfield",
+            "prefill": "https://supabase.com",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "company_website"
+        ]
+      },
+      "verification_scope": "Explicit B2B program evidence in vendor-linked official pages, including program types when stated.",
+      "coverage_limits": "Observed application links are not submitted; eligibility, benefits and acceptance are not inferred.",
+      "request_bounds": "8 requests, 7 MB total, 3 MB per page, 35-second network budget.",
+      "public_store_verified": true,
+      "agentic_runnable_store_filter_verified": true,
+      "exact_mcp_details_verified": true,
+      "independent_purchase_confirmed": false
+    },
+    {
+      "intent": "Does this vendor officially document this named integration?",
+      "delivers": "Check a precise integration claim before recommending a vendor.",
+      "actor": "impressionable_lupine/verified-integration-evidence",
+      "actor_id": "VNySEt559gcOuwjE9",
+      "store_url": "https://apify.com/impressionable_lupine/verified-integration-evidence",
+      "public": true,
+      "build": "0.2.3",
+      "price": {
+        "currency": "USD",
+        "event": "verified-integration-report",
+        "unit_price": 0.02,
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Software Integration Checker \u2014 Verified Evidence",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Official company website",
+            "type": "string",
+            "description": "One public official HTTPS company website; the Actor follows only linked same-company integration pages.",
+            "editor": "textfield",
+            "prefill": "https://linear.app",
+            "maxLength": 2048
+          },
+          "integration_name": {
+            "title": "Integration name",
+            "type": "string",
+            "description": "One exact software or app name to check, such as GitHub or Salesforce.",
+            "editor": "textfield",
+            "prefill": "GitHub",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "company_website",
+          "integration_name"
+        ]
+      },
+      "verification_scope": "Official linked documentation explicitly identifies the requested integration.",
+      "coverage_limits": "Documentation does not establish a working connection, authentication, plan entitlement or current endpoint behavior.",
+      "request_bounds": "8 requests, 7 MB total, 3 MB per page, 35-second network budget.",
+      "public_store_verified": true,
+      "agentic_runnable_store_filter_verified": true,
+      "exact_mcp_details_verified": true,
+      "independent_purchase_confirmed": false
     }
   ],
   "evidence": {
@@ -121,5 +352,23 @@
     "independent_purchase_verified": false,
     "runtime_fixes_deployed": false
   },
-  "usage_boundary": "No discovery of companies, people identity/deliverability verification, proof of buying intent, outreach, top-ups, subscriptions or recurring purchases."
+  "usage_boundary": "No discovery of companies, people identity/deliverability verification, proof of buying intent, outreach, top-ups, subscriptions or recurring purchases.",
+  "skills": [
+    {
+      "name": "apify-company-hiring-contact",
+      "path": "SKILL.md",
+      "community_review": "https://github.com/apify/awesome-skills/pull/149"
+    },
+    {
+      "name": "apify-vendor-evidence-check",
+      "path": "skills/apify-vendor-evidence-check/SKILL.md",
+      "community_review": "https://github.com/apify/awesome-skills/pull/150"
+    },
+    {
+      "name": "apify-verified-cost-snapshots",
+      "path": "skills/apify-verified-cost-snapshots/SKILL.md",
+      "community_review": "https://github.com/apify/awesome-skills/pull/151"
+    }
+  ],
+  "community_acceptance_verified": false
 }
