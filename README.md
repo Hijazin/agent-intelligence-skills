@@ -21,10 +21,10 @@ Use Hiring to qualify an existing account research queue. Add Contact only when 
 Requirements: Node.js 22.20.0 or newer, npm and Git. For Codex, in your project directory:
 
 ```sh
-DISABLE_TELEMETRY=1 npx skills@1.7.1 add Hijazin/agent-intelligence-skills --skill apify-company-hiring-contact --agent codex --copy --yes
+DISABLE_TELEMETRY=1 npx skills@1.7.1 add Hijazin/agent-intelligence-skills --full-depth --skill apify-company-hiring-contact --agent codex --copy --yes
 ```
 
-For Claude Code, replace `--agent codex` with `--agent claude-code`. Inspect [SKILL.md](SKILL.md) and its references before installing. The installer is the external open-source [Vercel skills CLI](https://github.com/vercel-labs/skills); it is not our payment processor. Installing a skill does not authorize paid calls. Version 1.7.1 was checked against the official npm package repository. Documentation installation was tested on 2026-10-08 with Node.js 24.19.0 in isolated Codex and Claude Code project directories; all four skill/reference files matched the source exactly. This tests installation, not paid execution, independent adoption or settled payment.
+For Claude Code, replace `--agent codex` with `--agent claude-code`. Inspect [SKILL.md](SKILL.md) and its references before installing. The installer is the external open-source [Vercel skills CLI](https://github.com/vercel-labs/skills); it is not our payment processor. Installing a skill does not authorize paid calls. Version 1.7.1 was checked against the official npm package repository. Documentation installation was tested on 2026-10-08 with Node.js 24.19.0 in isolated Codex and Claude Code project directories; all three workflows and twelve installed skill/reference copies matched the source exactly. This tests installation, not paid execution, independent adoption or settled payment.
 
 Connect your MCP client to:
 
@@ -48,7 +48,7 @@ Exact Actor names, inputs, pinned builds and capped MCP argument templates are i
 - [Vendor evidence](skills/apify-vendor-evidence-check/SKILL.md): select official integration, customer-story or partner-program evidence for a vendor shortlist.
 - [Cost snapshots](skills/apify-verified-cost-snapshots/SKILL.md): select SaaS plan prices or product price/stock evidence and preserve dated scope for comparison.
 
-Install either additional workflow with the same command above, replacing `--skill apify-company-hiring-contact` with `--skill apify-vendor-evidence-check` or `--skill apify-verified-cost-snapshots`. Only public, validated Actors are routed here. Four other validated releases remain private because Apify returned daily-publication-limit-exceeded; they are not publicly callable and are excluded.
+The `--full-depth` option is required to discover the nested workflows when a root SKILL.md exists. Install either additional workflow with the same command above, replacing `--skill apify-company-hiring-contact` with `--skill apify-vendor-evidence-check` or `--skill apify-verified-cost-snapshots`. Only public, validated Actors are routed here. Four other validated releases remain private because Apify returned daily-publication-limit-exceeded; they are not publicly callable and are excluded.
 
 Prices checked 8 October 2026; re-read current metadata before purchasing. Standard Actor platform usage is included under the checked configuration. Your model, workflow hosting and external payment-rail fees are separate. Each new listed capability costs at most one eligible result event per bounded example: SaaS, Customer, Partner and Integration $0.02; Retail $0.01. Unknown/invalid outcomes do not produce a successful-result event. See each current Store README for exact billing policy. Ten Hiring checks cap at $0.30; caps are not discounts or positive-result guarantees.
 
