@@ -28,6 +28,8 @@ Why pay: avoid maintaining source-specific acquisition, normalization and eviden
 
 **[Seven archived full examples and capped API/MCP calls](references/validated-examples-2026-10-08.json)** · **[Machine-readable routing index for all eleven](capabilities.json)**. The four newer public Actors have bounded Store example tasks for [lead enrichment](https://apify.com/impressionable_lupine/qualified-b2b-lead-finder/examples/verify-one-clinic-business-lead), [claims](https://apify.com/impressionable_lupine/verified-company-capability-claims/examples/verify-linear-github-integration-claim), [updates](https://apify.com/impressionable_lupine/verified-company-updates/examples/check-intercom-product-updates), and [API docs](https://apify.com/impressionable_lupine/verified-developer-api-docs/examples/verify-linear-graphql-api-docs). Those saved examples are dated owner-funded runs, not customer purchases.
 
+For an account research agent's first purchase decision, see the [one-company hiring check](references/one-company-hiring-check.md): exact task, $0.03 ceiling, a dated source-backed output and the interpretation limits.
+
 ## Inspect for free, then start with one company
 
 Hiring and Contact live defaults checked **9 October 2026**. The other seven-service archive and its routing index were checked **8 October 2026**; prices, visibility and builds can change, so inspect again before spending. An anonymous metadata request does not start a run:
