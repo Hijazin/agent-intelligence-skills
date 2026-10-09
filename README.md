@@ -6,6 +6,8 @@ For account research, vendor evaluation and price monitoring workflows. Choose t
 
 Maintained by Majd Hijazin / Boatify Rentals LLC. We own the paid Actors and can earn eligible usage revenue. This repository and its skills are free; Actor execution uses the caller's authorized Apify account.
 
+**Website:** [agents.retainly.dev](https://agents.retainly.dev) has the capability catalog, a task guide per capability, recorded examples and the agent quickstart. Machine-readable: [llms.txt](https://agents.retainly.dev/llms.txt) · [capabilities.json](https://agents.retainly.dev/capabilities.json).
+
 ## Choose by the question you need answered
 
 | Question / capability | What comes back | Price per eligible report | Key limit |
