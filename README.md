@@ -1,6 +1,6 @@
 # Evidence-backed business intelligence for agents
 
-**Ask a specific question about a supplied company or product URL. Receive structured JSON with source evidence, observation times and explicit uncertainty. Seven public Apify capabilities, $0.01–$0.03 per eligible report.**
+**Ask a specific question about a supplied company or product URL. Receive structured JSON with source evidence, observation times and explicit uncertainty. Eleven public Apify Actors, $0.01–$0.07 per eligible result.**
 
 For account research, vendor evaluation and price monitoring workflows. Choose the capability that answers your question; inspect it for free before authorizing a paid call. These services check supplied websites and products. They do not discover company lists, identify decision-makers or prove buying intent.
 
@@ -19,14 +19,18 @@ Maintained by Majd Hijazin / Boatify Rentals LLC. We own the paid Actors and can
 | [Customer case studies](https://apify.com/impressionable_lupine/verified-customer-proof) · `customer.evidence` | Named customer stories linked from the vendor's official website | $0.02 | Vendor statements, not independent endorsement or proof a relationship is current |
 | [B2B partner programs](https://apify.com/impressionable_lupine/verified-partner-programs) · `partner.find` | Official program evidence and published next-step links | $0.02 | Does not establish eligibility, apply or infer acceptance |
 | [Software integration checker](https://apify.com/impressionable_lupine/verified-integration-evidence) · `integration.verify` | Official evidence for a supplied integration name | $0.02 | Documentation is not a tested connection or proof of plan entitlement |
+| [Qualified B2B company enrichment](https://apify.com/impressionable_lupine/qualified-b2b-lead-finder) · `lead.enrich` | Supplied-domain company and public business contact evidence | $0.07 per qualified lead | Does not identify people or guarantee email deliverability |
+| [Company capability claim check](https://apify.com/impressionable_lupine/verified-company-capability-claims) · `claim.verify` | Scoped status for a specified API, partner or integration claim | $0.02 | Official documentation is not proof an integration works in a customer's account |
+| [Company product updates](https://apify.com/impressionable_lupine/verified-company-updates) · `company.updates` | Dated, official product updates and source links | $0.02 | Coverage is limited to checked official sources and date evidence |
+| [Developer API docs finder](https://apify.com/impressionable_lupine/verified-developer-api-docs) · `api.docs.find` | First-party API documentation evidence and URLs | $0.01 | Public docs do not prove API access or plan entitlement |
 
 Why pay: avoid maintaining source-specific acquisition, normalization and evidence checks for these narrow questions. Use a direct source API when you already have its adapter and only need raw data. Use a broader discovery or people-data provider for different questions. We have not established competitive cost or precision superiority, independent purchases or repeat demand.
 
-**[All seven full examples and capped API/MCP calls](references/validated-examples-2026-10-08.json)** · **[Machine-readable routing index](capabilities.json)**
+**[Seven archived full examples and capped API/MCP calls](references/validated-examples-2026-10-08.json)** · **[Machine-readable routing index for those seven](capabilities.json)**. The four additional public Actors have [bounded Store example tasks](https://apify.com/impressionable_lupine/qualified-b2b-lead-finder/examples/verify-one-clinic-business-lead) for [claims](https://apify.com/impressionable_lupine/verified-company-capability-claims/examples/verify-linear-github-integration-claim), [updates](https://apify.com/impressionable_lupine/verified-company-updates/examples/check-intercom-product-updates), and [API docs](https://apify.com/impressionable_lupine/verified-developer-api-docs/examples/verify-linear-graphql-api-docs). Those saved examples are dated owner-funded runs, not customer purchases.
 
 ## Inspect for free, then start with one company
 
-Metadata checked **8 October 2026, 08:50 UTC**. Prices, visibility and builds can change; inspect again before spending. An anonymous metadata request does not start a run:
+Hiring and Contact live defaults checked **9 October 2026**. The other seven-service archive and its routing index were checked **8 October 2026**; prices, visibility and builds can change, so inspect again before spending. An anonymous metadata request does not start a run:
 
 ```sh
 curl --fail --silent --show-error 'https://api.apify.com/v2/acts/DnTJ0PiYO5uNHgDKK'
@@ -66,7 +70,7 @@ Hiring is our suggested first trial for an existing company research queue, base
     },
     "waitSecs": 30,
     "callOptions": {
-      "build": "2.0.19",
+      "build": "2.0.20",
       "memory": 512,
       "timeout": 120,
       "maxTotalChargeUsd": 0.03
@@ -83,10 +87,12 @@ curl --fail --silent --show-error \
   --header "Authorization: Bearer ${APIFY_TOKEN}" \
   --header 'Content-Type: application/json' \
   --data '{"company_website":"https://linear.app","lookback_days":30,"max_jobs":5}' \
-  'https://api.apify.com/v2/acts/DnTJ0PiYO5uNHgDKK/runs?build=2.0.19&memory=512&timeout=120&maxTotalChargeUsd=0.03&waitForFinish=30'
+  'https://api.apify.com/v2/acts/DnTJ0PiYO5uNHgDKK/runs?build=2.0.20&memory=512&timeout=120&maxTotalChargeUsd=0.03&waitForFinish=30'
 ```
 
 Choose your own official company website. The Linear input is a worked example, not a guarantee of current results. One company per run; title, geography and department filtering is a caller-side step, not a supported input. A capped response cannot prove that an unreturned role is absent.
+
+For a one-click, one-company starting point, use the public [Hiring example task](https://apify.com/impressionable_lupine/company-recent-job-openings/examples/recent-hiring-sales-research), capped at $0.03 and pinned to build `2.0.20`, or the [Contact example task](https://apify.com/impressionable_lupine/verified-contact-booking-signals/examples/public-business-contact-booking-check), capped at $0.01 and pinned to build `0.2.4`. Check the displayed input and current billing terms before running either task in your own account. Their saved inputs are examples, not live result guarantees.
 
 Save the returned run ID. If the response is slow or uncertain, reconcile that same run with `get-actor-run` (API: `GET /v2/actor-runs/{runId}`) before considering another purchase. Once it succeeds, fetch `OUTPUT` with `get-key-value-store-record` from its `defaultKeyValueStoreId` (`recordKey: "OUTPUT"`), or `get-dataset-items` from its `defaultDatasetId`. Read the envelope's `raw_report` and preserve its coverage, errors and billing receipt separately. Match Actor/build/input and validate the report before using it. **Do not automatically retry paid run creation.**
 
@@ -127,10 +133,10 @@ Use secure caller-managed Apify authentication for execution. A host must supply
 
 ## Verification record and open limits
 
-[Current seven-service examples](references/validated-examples-2026-10-08.json) include full reports and templates pinned to the defaults checked at 08:50 UTC. Their inputs and reports were validated locally against the checked schemas. The API/SDK release calls were tested; these copy-paste MCP templates have not been executed as a fresh live MCP/n8n purchase.
+[The seven-service archived examples](references/validated-examples-2026-10-08.json) include full reports and templates pinned to the defaults checked on 8 October. Their inputs and reports were validated locally against the checked schemas. The API/SDK release calls were tested; these copy-paste MCP templates have not been executed as a fresh live MCP/n8n purchase. Their historical build pins are preserved in the archive.
 
 [The 4 October archive](references/output-examples.json) stays unchanged. Older workflow references retain their explicit earlier tested pins; they are historical examples, not statements of today's default. [Verification notes](references/verification-notes.md) preserve prior evidence and limits. Hiring/Contact defaults `2.0.19` / `0.2.3` add documentation to the previously fixed runtime; the latest two bounded release tests passed before this free documentation polish.
 
-Only seven public Actors are routed here. Four other releases remain private and are excluded. The routing index is descriptive, not a standardized payment manifest. Direct x402 purchase, independent customer payment, repeat demand and profitability remain unverified.
+Eleven Actors are public as of the 9 October metadata check. The machine-readable routing index and installed skill package still cover seven; use the direct Store links above for the four newer releases until the index is expanded. The routing index is descriptive, not a standardized payment manifest. Direct x402 purchase, independent customer payment, repeat demand and profitability remain unverified.
 
 Community submissions: [Hiring/Contact](https://github.com/apify/awesome-skills/pull/149), [Vendor Evidence](https://github.com/apify/awesome-skills/pull/150), [Cost Snapshots](https://github.com/apify/awesome-skills/pull/151). Submission does not establish catalog acceptance. This owner-maintained repository is usable directly; it is not an official Apify skill or a verified approved catalog entry.
