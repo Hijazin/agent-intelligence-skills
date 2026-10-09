@@ -1,0 +1,134 @@
+[
+  {
+    "slug": "verified-hiring-signals",
+    "title": "Verified Hiring Signals",
+    "kind": "hiring",
+    "actor_id": "DnTJ0PiYO5uNHgDKK",
+    "file": "verified-hiring-signals.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "qualified-b2b-lead-finder",
+    "title": "Qualified B2B Lead Finder",
+    "kind": "lead",
+    "actor_id": "aos5zh1SYdavQsonV",
+    "file": "qualified-b2b-lead-finder.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-saas-pricing",
+    "title": "Verified SaaS Pricing",
+    "kind": "saas",
+    "actor_id": "FqG15P6FbSTh0QPqq",
+    "file": "verified-saas-pricing.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-retail-availability",
+    "title": "Verified Retail Price & Availability",
+    "kind": "retail",
+    "actor_id": "1Huevg4n0rTdCWySV",
+    "file": "verified-retail-availability.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-contact-booking-signals",
+    "title": "Verified Contact & Booking Signals",
+    "kind": "contact",
+    "actor_id": "zATaaVqLePrcoF50q",
+    "file": "verified-contact-booking-signals.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-customer-proof",
+    "title": "Verified Customer Proof",
+    "kind": "proof",
+    "actor_id": "kRk9vTOnhmGMMrMCg",
+    "file": "verified-customer-proof.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-partner-programs",
+    "title": "Verified Partner Programs",
+    "kind": "partner",
+    "actor_id": "NSd4yuX7ShfX7R7QI",
+    "file": "verified-partner-programs.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-integration-evidence",
+    "title": "Verified Integration Evidence",
+    "kind": "integration",
+    "actor_id": "VNySEt559gcOuwjE9",
+    "file": "verified-integration-evidence.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-company-updates",
+    "title": "Verified Company Updates",
+    "kind": "updates",
+    "actor_id": "yNdj714awQKkIYbpP",
+    "file": "verified-company-updates.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "verified-developer-api-docs",
+    "title": "Verified Developer API Docs",
+    "kind": "docs",
+    "actor_id": "2v9azPX4hug0MAsu0",
+    "file": "verified-developer-api-docs.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  },
+  {
+    "slug": "claim-verification",
+    "title": "Claim Verification",
+    "kind": "claim",
+    "actor_id": "mVv9s2pIfUbf4Ilui",
+    "file": "claim-verification.png",
+    "pixels": "512x512",
+    "colors": [
+      "#D85A16",
+      "#FFFFFF"
+    ]
+  }
+]
