@@ -565,6 +565,561 @@
       "mcp_arguments_reference": "references/validated-examples-2026-10-08.json",
       "output_example_reference": "references/validated-examples-2026-10-08.json",
       "reference_service_key": "integration.verify"
+    },
+    {
+      "capability": "lead.enrich",
+      "intent": "What public business contact and qualification evidence exists for these supplied company domains?",
+      "delivers": "Source-backed company enrichment and qualified public business contact rows",
+      "actor": "impressionable_lupine/qualified-b2b-lead-finder",
+      "actor_id": "aos5zh1SYdavQsonV",
+      "store_url": "https://apify.com/impressionable_lupine/qualified-b2b-lead-finder",
+      "public": true,
+      "build": "0.2.4",
+      "price": {
+        "currency": "USD",
+        "event": "qualified-lead",
+        "unit_price": 0.07,
+        "charge_trigger": "Charged once for each delivered, source-checked lead that matches the requested criteria. Unqualified or unavailable leads are free.",
+        "max_events_per_run": null,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "B2B Lead Finder — Verified Company Enrichment",
+        "description": "Use query + max_results to discover, or companies to enrich. Unsupported criteria remain unknown rather than being invented.",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "query": {
+            "title": "Describe the businesses to find",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Experimental provider-led discovery using documented filters only; source coverage and provider costs require validation. Prefer mode=enrich with supplied domains for the initial supported workflow. Unsupported criteria remain unknown."
+          },
+          "max_results": {
+            "title": "Maximum qualified leads",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 25,
+            "description": "Target maximum. One run checks at most 120 candidates; larger requests return a partial report and require batching."
+          },
+          "companies": {
+            "title": "Companies to enrich",
+            "type": "array",
+            "editor": "json",
+            "description": "Array of objects with website and/or name. This selects enrich mode by default. At most five companies may omit a website per run because each name requires a separate paid search-provider call; provide domains for larger batches.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "title": "Company name",
+                  "description": "Public business name when known.",
+                  "type": "string",
+                  "editor": "textfield"
+                },
+                "website": {
+                  "title": "Company website",
+                  "description": "Public company website URL or domain.",
+                  "type": "string",
+                  "editor": "textfield"
+                }
+              }
+            }
+          },
+          "domains": {
+            "title": "Website domains to enrich",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Simple list of company domains or URLs. This also selects enrich mode.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "exclude_lead_ids": {
+            "title": "Lead IDs already received",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Optional lead_id values from previous runs. Matching leads are skipped and are never counted as billable results. Keep this list in your agent's own state for cross-run deduplication.",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{64}$"
+            }
+          },
+          "mode": {
+            "title": "Workflow",
+            "type": "string",
+            "enum": [
+              "discover",
+              "enrich"
+            ],
+            "description": "enrich checks supplied companies/domains; discover searches supported providers. Providing companies or domains selects enrich by default.",
+            "editor": "select"
+          },
+          "industry": {
+            "title": "Industry or category",
+            "type": "string",
+            "description": "Requested business category. It must match observed category or labeled website evidence; unknown category cannot qualify a lead.",
+            "editor": "textfield"
+          },
+          "location": {
+            "title": "Location",
+            "type": "string",
+            "description": "Requested city/region. Qualification needs sourced address fields; a domain extension is not location evidence. Broad continental regions remain unknown.",
+            "editor": "textfield"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string",
+            "description": "Requested explicit country name or ISO country code. Checked against source-stated country/address evidence; never inferred from a domain suffix or phone prefix. Contradictions remain unknown.",
+            "editor": "textfield"
+          },
+          "minimum_rating": {
+            "title": "Minimum public rating",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5,
+            "description": "Minimum source-provided rating from 0 to 5. Missing ratings remain unknown and cannot pass this criterion."
+          },
+          "minimum_review_count": {
+            "title": "Minimum review count",
+            "type": "number",
+            "minimum": 0,
+            "description": "Minimum source-provided review count. Missing counts remain unknown; website contact information does not establish reviews."
+          },
+          "website_required": {
+            "title": "Require live website",
+            "type": "boolean",
+            "default": false,
+            "description": "Require a checked live public website. This verifies website availability, not current business operation."
+          },
+          "email_required": {
+            "title": "Require public business email",
+            "type": "boolean",
+            "default": false,
+            "description": "Require an observed public business email. Publication is checked; mailbox ownership and deliverability are not tested."
+          },
+          "contact_required": {
+            "title": "Require public business contact",
+            "type": "boolean",
+            "default": false,
+            "description": "Require at least one verified public business email or phone number. Use email_required and phone_required together only when both are needed."
+          },
+          "phone_required": {
+            "title": "Require public phone",
+            "type": "boolean",
+            "default": false,
+            "description": "Require an observed public business phone number. Publication is checked; the number is not called."
+          },
+          "social_profile_required": {
+            "title": "Require public social profile",
+            "type": "boolean",
+            "default": false,
+            "description": "Require at least one observed linked public social profile. Profile ownership and activity are not independently verified."
+          },
+          "exclude_chains": {
+            "title": "Prefer likely independent businesses",
+            "type": "boolean",
+            "default": false,
+            "description": "An inference from public signals; not proof of ownership."
+          },
+          "exclude_booking": {
+            "title": "Exclude obvious online booking",
+            "type": "boolean",
+            "default": false,
+            "description": "No observed booking link is not proof no booking exists."
+          },
+          "keywords": {
+            "title": "Required keywords",
+            "type": "array",
+            "editor": "stringList",
+            "items": {
+              "type": "string"
+            },
+            "description": "Phrases required in the sourced company name, description or category. Phrase matching is explicit; no latent purchase intent is inferred."
+          },
+          "exclude_keywords": {
+            "title": "Excluded keywords",
+            "type": "array",
+            "editor": "stringList",
+            "items": {
+              "type": "string"
+            },
+            "description": "Phrases that disqualify a company when present in its sourced name, description or category. Missing descriptive content remains unknown."
+          },
+          "discovery_source": {
+            "title": "Discovery source",
+            "type": "string",
+            "enum": [
+              "auto",
+              "maps",
+              "search",
+              "osm"
+            ],
+            "default": "auto",
+            "description": "auto uses bounded Maps and Search discovery. A specific maps, search, or osm value uses only that source family; osm does not silently launch paid Maps or Search providers. OSM is explicit-only while public Overpass availability is unreliable.",
+            "editor": "select"
+          },
+          "include_unqualified": {
+            "title": "Include rejected or unknown candidates",
+            "type": "boolean",
+            "default": false,
+            "description": "Return additional audit rows when true. Only qualification.qualified=true rows count as paid qualified-lead events."
+          },
+          "include_hiring_signal": {
+            "title": "Hiring signal (experimental)",
+            "type": "boolean",
+            "default": false,
+            "description": "Reserved; currently reported as unsupported and never inferred."
+          },
+          "enrichment_options": {
+            "title": "Enrichment options",
+            "type": "object",
+            "editor": "json",
+            "description": "Optional public website checks.",
+            "properties": {
+              "contacts": {
+                "title": "Contacts",
+                "description": "Read public business contact information.",
+                "type": "boolean"
+              },
+              "socials": {
+                "title": "Socials",
+                "description": "Read public company social links.",
+                "type": "boolean"
+              },
+              "booking": {
+                "title": "Booking",
+                "description": "Look for obvious booking links.",
+                "type": "boolean"
+              },
+              "technology": {
+                "title": "Technology",
+                "description": "Look for explicit website technology signals.",
+                "type": "boolean"
+              }
+            }
+          },
+          "active_required": {
+            "title": "Require evidence of current activity",
+            "type": "boolean",
+            "default": false,
+            "description": "Require verified current operation. A live website alone is only a low-confidence inference, so this criterion remains unknown and the lead is not qualified without stronger evidence."
+          }
+        }
+      },
+      "output_schema": {
+        "actorOutputSchemaVersion": 1,
+        "title": "Qualified lead report",
+        "properties": {
+          "report": {
+            "type": "string",
+            "title": "Full structured report",
+            "description": "JSON report with source scope, qualification counts, errors and lead rows.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+          },
+          "leads": {
+            "type": "string",
+            "title": "Lead rows",
+            "description": "Structured qualified business rows in the default dataset.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+          },
+          "billing": {
+            "title": "Actual platform event receipt",
+            "type": "string",
+            "description": "Actual accepted qualified-lead count; not confirmation of customer revenue.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/BILLING"
+          }
+        }
+      },
+      "mcp_configuration_url": "https://apify.com/impressionable_lupine/qualified-b2b-lead-finder/api/mcp",
+      "output_example_reference": "https://apify.com/impressionable_lupine/qualified-b2b-lead-finder/examples/verify-one-clinic-business-lead",
+      "verification_scope": "Source-backed company enrichment and qualified public business contact rows",
+      "coverage_limits": "A supplied-domain check does not identify people, verify mailbox deliverability or prove buying intent. Qualification follows the stated criteria and checked public sources.",
+      "selection": {
+        "choose_when": "A known-company enrichment queue needs public business contact and fit evidence.",
+        "do_not_choose_for": [
+          "Discovering all companies in a market",
+          "Personal email or decision-maker identity verification"
+        ],
+        "example_task_url": "https://apify.com/impressionable_lupine/qualified-b2b-lead-finder/examples/verify-one-clinic-business-lead",
+        "example_note": "Dated owner-funded test; verify current terms and output before use."
+      },
+      "metadata_checked_at": "2026-10-09T10:59:52.115Z",
+      "independent_purchase_verified": false
+    },
+    {
+      "capability": "claim.verify",
+      "intent": "Does official company evidence support this specific API, partner-program or integration claim?",
+      "delivers": "A scoped claim status with supporting or conflicting official evidence",
+      "actor": "impressionable_lupine/verified-company-capability-claims",
+      "actor_id": "mVv9s2pIfUbf4Ilui",
+      "store_url": "https://apify.com/impressionable_lupine/verified-company-capability-claims",
+      "public": true,
+      "build": "0.3.4",
+      "price": {
+        "currency": "USD",
+        "event": "claim-verified",
+        "unit_price": 0.02,
+        "charge_trigger": "One accessible, source-backed VERIFIED report for a company API, partner program or named integration claim. At most one event per run. Unknown, invalid and stale results are free.",
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Company Claim Verification — APIs & Integrations",
+        "schemaVersion": 1,
+        "type": "object",
+        "properties": {
+          "company_website": {
+            "title": "Official company website",
+            "type": "string",
+            "editor": "textfield",
+            "description": "One official public HTTPS company website. Only first-party evidence is accepted.",
+            "maxLength": 2048,
+            "prefill": "https://linear.app/"
+          },
+          "predicate": {
+            "title": "Claim to verify",
+            "type": "string",
+            "editor": "select",
+            "enum": [
+              "api_documentation_available",
+              "partner_program_available",
+              "integration_documented"
+            ],
+            "description": "A documented capability, not operational API access, program acceptance, or successful integration setup.",
+            "default": "integration_documented"
+          },
+          "target": {
+            "title": "Integration name",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Required only for integration_documented. Omit for other claims.",
+            "minLength": 2,
+            "maxLength": 80,
+            "prefill": "GitHub"
+          },
+          "source_url": {
+            "title": "Optional direct official source",
+            "type": "string",
+            "editor": "textfield",
+            "description": "A first-party HTTPS documentation URL. When supplied, check this source directly instead of discovering from the homepage. Off-company URLs are rejected.",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "company_website",
+          "predicate"
+        ]
+      },
+      "output_schema": {
+        "actorOutputSchemaVersion": 1,
+        "title": "Source-backed claim report",
+        "properties": {
+          "report": {
+            "type": "string",
+            "title": "JSON report",
+            "description": "One immutable source report (0.3) with explicit status and maximum price. Read BILLING for actual event application; a report is not proof of customer payment.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Report dataset",
+            "description": "One JSON report row; inspect evidence and source_errors before using it.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+          },
+          "billing": {
+            "type": "string",
+            "title": "Event receipt",
+            "description": "charged_count 0 or 1 after acknowledgment; null requires reconciliation. Owner tests are not customer sales.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/BILLING"
+          },
+          "error": {
+            "type": "string",
+            "title": "Structured error",
+            "description": "Present after a contract, storage or billing failure. Do not automatically retry an uncertain payment.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/ERROR"
+          }
+        }
+      },
+      "mcp_configuration_url": "https://apify.com/impressionable_lupine/verified-company-capability-claims/api/mcp",
+      "output_example_reference": "https://apify.com/impressionable_lupine/verified-company-capability-claims/examples/verify-linear-github-integration-claim",
+      "verification_scope": "A scoped claim status with supporting or conflicting official evidence",
+      "coverage_limits": "Official documentation does not prove that an integration works in a customer account, and a missing mention is not global proof of absence.",
+      "selection": {
+        "choose_when": "A vendor evaluation agent needs a cited answer to one precise capability claim.",
+        "do_not_choose_for": [
+          "Testing authenticated product behavior",
+          "Inferring all integrations from one page"
+        ],
+        "example_task_url": "https://apify.com/impressionable_lupine/verified-company-capability-claims/examples/verify-linear-github-integration-claim",
+        "example_note": "Dated owner-funded test; verify current terms and output before use."
+      },
+      "metadata_checked_at": "2026-10-09T10:59:52.115Z",
+      "independent_purchase_verified": false
+    },
+    {
+      "capability": "company.updates",
+      "intent": "Which dated product updates did this company publish on its official source within the requested window?",
+      "delivers": "Normalized dated updates with article-level date evidence and official links",
+      "actor": "impressionable_lupine/verified-company-updates",
+      "actor_id": "yNdj714awQKkIYbpP",
+      "store_url": "https://apify.com/impressionable_lupine/verified-company-updates",
+      "public": true,
+      "build": "0.1.4",
+      "price": {
+        "currency": "USD",
+        "event": "verified-updates-report",
+        "unit_price": 0.02,
+        "charge_trigger": "One delivered report containing verified first-party source evidence. At most one event per run. Unknown and invalid checks have no result fee.",
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "Official Company Updates — Source-Verified Publication Dates",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Company website",
+            "type": "string",
+            "description": "Official public company domain or HTTPS URL; one company per run. The Actor follows linked updates pages only.",
+            "editor": "textfield",
+            "prefill": "https://linear.app",
+            "maxLength": 2048
+          },
+          "lookback_days": {
+            "title": "Lookback days",
+            "type": "integer",
+            "description": "UTC calendar-day window. Only dates explicitly published by the source qualify.",
+            "default": 30,
+            "minimum": 1,
+            "maximum": 365
+          },
+          "max_updates": {
+            "title": "Maximum updates",
+            "type": "integer",
+            "description": "Return at most this many verified updates (1–20). Unverifiable candidate links do not consume the output limit; the scan remains bounded to 12 requests and 45 seconds.",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 20
+          },
+          "updates_url": {
+            "title": "Official updates URL (optional)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Optional direct first-party HTTPS changelog, news index, article or RSS/Atom feed on the same company domain. Feed entries require independent article title and publication-date verification. No homepage request is required."
+          }
+        },
+        "required": [
+          "company_website"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "actorOutputSchemaVersion": 1,
+        "title": "Verified company updates report",
+        "properties": {
+          "report": {
+            "type": "string",
+            "title": "Structured report",
+            "description": "One bounded first-party update report, including verified dates, unknown outcomes, errors and check times.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+          },
+          "reports": {
+            "type": "string",
+            "title": "Report dataset",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+          }
+        }
+      },
+      "mcp_configuration_url": "https://apify.com/impressionable_lupine/verified-company-updates/api/mcp",
+      "output_example_reference": "https://apify.com/impressionable_lupine/verified-company-updates/examples/check-intercom-product-updates",
+      "verification_scope": "Normalized dated updates with article-level date evidence and official links",
+      "coverage_limits": "Only checked official sources and verifiable publication dates count; this is not general news discovery or proof of all company changes.",
+      "selection": {
+        "choose_when": "A monitoring agent needs source-dated official product changes for a known company.",
+        "do_not_choose_for": [
+          "Unbounded news search",
+          "Treating an undated change as recent"
+        ],
+        "example_task_url": "https://apify.com/impressionable_lupine/verified-company-updates/examples/check-intercom-product-updates",
+        "example_note": "Dated owner-funded test; verify current terms and output before use."
+      },
+      "metadata_checked_at": "2026-10-09T10:59:52.115Z",
+      "independent_purchase_verified": false
+    },
+    {
+      "capability": "api.docs.find",
+      "intent": "Where does this company publish first-party API documentation, and what technical access is documented?",
+      "delivers": "First-party API documentation URLs and observed technical evidence",
+      "actor": "impressionable_lupine/verified-developer-api-docs",
+      "actor_id": "2v9azPX4hug0MAsu0",
+      "store_url": "https://apify.com/impressionable_lupine/verified-developer-api-docs",
+      "public": true,
+      "build": "0.1.5",
+      "price": {
+        "currency": "USD",
+        "event": "verified-api-documentation-report",
+        "unit_price": 0.01,
+        "charge_trigger": "One delivered report containing verified first-party source evidence. At most one event per run. Unknown and invalid checks have no result fee.",
+        "max_events_per_run": 1,
+        "platform_usage_included_under_checked_configuration": true,
+        "recheck_before_purchase": true
+      },
+      "input_schema": {
+        "title": "API Documentation Finder — Verified Web Sources",
+        "type": "object",
+        "schemaVersion": 1,
+        "properties": {
+          "company_website": {
+            "title": "Official company website",
+            "type": "string",
+            "description": "One public official HTTPS company website. The Actor follows only same-company documentation links.",
+            "editor": "textfield",
+            "prefill": "https://stripe.com",
+            "maxLength": 2048
+          },
+          "documentation_url": {
+            "title": "Official API documentation URL (optional)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Optional direct first-party HTTPS documentation URL on the same registrable company domain. Checks this page before homepage discovery. Does not test endpoint operation or entitlement."
+          }
+        },
+        "required": [
+          "company_website"
+        ]
+      },
+      "output_schema": {
+        "actorOutputSchemaVersion": 1,
+        "title": "Verified developer API documentation report",
+        "properties": {
+          "report": {
+            "type": "string",
+            "title": "Structured report",
+            "description": "One source-checked report or an explicit unknown/invalid-input outcome.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+          }
+        }
+      },
+      "mcp_configuration_url": "https://apify.com/impressionable_lupine/verified-developer-api-docs/api/mcp",
+      "output_example_reference": "https://apify.com/impressionable_lupine/verified-developer-api-docs/examples/verify-linear-graphql-api-docs",
+      "verification_scope": "First-party API documentation URLs and observed technical evidence",
+      "coverage_limits": "Public documentation does not prove the caller has credentials, feature entitlement or a working integration.",
+      "selection": {
+        "choose_when": "An integration agent needs a cited official API-docs starting point for a known vendor.",
+        "do_not_choose_for": [
+          "Authenticated API testing",
+          "Proving an account has API access"
+        ],
+        "example_task_url": "https://apify.com/impressionable_lupine/verified-developer-api-docs/examples/verify-linear-graphql-api-docs",
+        "example_note": "Dated owner-funded test; verify current terms and output before use."
+      },
+      "metadata_checked_at": "2026-10-09T10:59:52.115Z",
+      "independent_purchase_verified": false
     }
   ],
   "evidence": {
@@ -609,5 +1164,8 @@
   ],
   "community_acceptance_verified": false,
   "free_discovery_endpoint": "https://mcp.apify.com?tools=search-actors,fetch-actor-details",
-  "selection_guidance_note": "Descriptive routing hints, not a standardized manifest. Search phrases are supported use-case language, not measured popularity. Reading or inspecting does not authorize execution."
+  "selection_guidance_note": "Descriptive routing hints, not a standardized manifest. Search phrases are supported use-case language, not measured popularity. Reading or inspecting does not authorize execution.",
+  "public_actor_count_checked": 11,
+  "additional_four_metadata_checked_at": "2026-10-09T10:59:52.115Z",
+  "additional_four_examples_origin": "Public example tasks backed by owner-funded 8 October 2026 runs; not customer transactions."
 }
